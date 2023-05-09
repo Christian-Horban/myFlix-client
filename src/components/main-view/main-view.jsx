@@ -1,32 +1,47 @@
 import {useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../Signup-View/SignupView";
 import { useState } from "react";
 import { useEffect } from "react";
 
 export const MainView = () => {
-    const [movies, setMovies] = useState([
-        {
-            id: 1,
-            title: "Iron Man",
-            image:"https://upload.wikimedia.org/wikipedia/en/0/02/Iron_Man_%282008_film%29_poster.jpg",
-            director:"Jon Favreau"
-        },
-        {
-            id: 2,
-            title: "Iron Man 2",
-            image: "https://m.media-amazon.com/images/M/MV5BZGVkNDAyM2EtYzYxYy00ZWUxLTgwMjgtY2VmODE5OTk3N2M5XkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_.jpg",
-            director:"Jon Favreau"
-        },
-        {
-            id: 3,
-            title: "Iron Man 3",
-            image: "https://kbimages1-a.akamaihd.net/39f5758d-be8e-4dfd-8395-52092dfb6f49/1200/1200/False/marvel-s-iron-man-3.jpg",
-            director:"Shane Black"
-        }
-    ]);
-
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [movies, setMovies] = useState([])
     const [selectedMovie, setSelectedMovie] = useState(null);
+    const [user, setUser] = useState(null);
+    const [token, setToken] =useState(null);
+
+    useEffect(() => {
+        if (!token) {
+            return;
+        }
+        
+        fetch("https://git.heroku.com/horban-movie-api.git/movies", {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+        });
+    }, [token]);
+
+
+    if (!user) {
+        return (
+            <>
+                <LoginView
+                 onLoggedIn={(user, token) => {
+                    setUser(user);
+                    setToken(token);
+                }} />
+            or
+            <SignupView />
+            </>
+            );
+        }
 
     if (selectedMovie) { 
         return (
@@ -49,6 +64,7 @@ export const MainView = () => {
                     }}
                     />
             ))}
+            <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
         </div>
     );
 };
