@@ -1,5 +1,7 @@
 import { createRoot } from 'react-dom/client';
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import { MainView } from './components/main-view/main-view';
 
 // Import statement to indicate that you need to bunde './index.scss'
