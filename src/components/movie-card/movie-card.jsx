@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
-=======
-// import PropTypes from "prop-types";
->>>>>>> b5af9f5182c53d52258090c87cb8c0cc7df1d0b0
 
 export const MovieCard = ({ movie, onMovieClick }) => {
     return (

@@ -27549,11 +27549,7 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-<<<<<<< HEAD
 },{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"dsW2x","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eSQlB","./movie-view.scss":"jnlR5"}],"jnlR5":[function() {},{}],"9YtA0":[function(require,module,exports) {
-=======
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"dsW2x","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eSQlB"}],"9YtA0":[function(require,module,exports) {
->>>>>>> b5af9f5182c53d52258090c87cb8c0cc7df1d0b0
 var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27654,11 +27650,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-<<<<<<< HEAD
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"dsW2x","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eSQlB"}],"kN0rg":[function(require,module,exports) {
-=======
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"dsW2x","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eSQlB","react":"21dqq"}],"kN0rg":[function(require,module,exports) {
->>>>>>> b5af9f5182c53d52258090c87cb8c0cc7df1d0b0
 var $parcel$ReactRefreshHelpers$8acd = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

@@ -16,10 +16,7 @@
   },
   "homepage": "https://github.com/Christian-Horban/myFlix-client#readme",
   "dependencies": {
-<<<<<<< HEAD
     "bootstrap": "5.2.0",
-=======
->>>>>>> b5af9f5182c53d52258090c87cb8c0cc7df1d0b0
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-bootstrap": "2.5.0",
