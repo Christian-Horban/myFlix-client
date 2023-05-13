@@ -4,6 +4,8 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../Signup-View/SignupView";
+import { NavigationBar } from "../navigation-bar/navigation-bar"
+import { ProfileView } from "../profile-view/profile-view";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -32,6 +34,12 @@ export const MainView = () => {
 
     return (
         <BrowserRouter>
+            <NavigationBar
+                user={user}
+                onLoggedOut={() => {
+                    setUser(null);
+            }}
+        />
           <Row className="justify-content-md-center">
             <Routes>
               <Route
@@ -63,6 +71,20 @@ export const MainView = () => {
                   </>
     
                 }
+              />
+                <Route
+                  path="/profile"
+                  element={
+                      !user ? (
+                          <Navigate to="/login" replace />
+                      ) : (
+                          <ProfileView user={user} token={token} movies={movies} onLoggedOut={() => {
+                              setUser(null);
+                              setToken(null);
+                              localStorage.clear();
+                          }} updateUser={updateUser}/>
+                      )
+                  }
               />
               <Route
                 path="/movies/:movieId"
