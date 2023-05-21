@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { Navigate } from "react-router";
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -12,7 +14,7 @@ const handleSubmit = (event) => {
     const data = {
         Username: username,
         Password: password,
-        email: email
+        email: email,
         // Birthday: birthday
     };
 
@@ -29,49 +31,115 @@ const handleSubmit = (event) => {
         } else {
             alert("Signup failed");
         }
-    });
+
+    })
+    .then((response) =>  {
+        if(response.ok) {
+            alert('Signup successful!');
+            Navigate('/login');
+        } else {
+            alert('Signup failed!');
+        }
+    })
+    .catch((error) => console.log(error));
 };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Username:
-                <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                minLength="3"
+        <Form
+        className="signup-view"
+        onSubmit={handleSubmit}
+        style={{ paddingTop: '45px', display: 'flex', flexDirection: 'column' }}
+        >
+            <Form.Group controlId="formUserName" style={{ padding: '10px' }}>
+                <Form.Label style={{ fontWeight: 'bold', padding: '3px' }}>
+                     Username:
+                </Form.Label>
+                <Form.Control
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                    minLength="3"
                 />
-            </label>
-            <label>
-                Password:
-                <input
+            </Form.Group>
+
+            <Form.Group controlId="formPassword" style={{ padding: '10px' }}>
+                <Form.Label style={{ fontWeight: 'bold', padding: '3px' }}>
+                    Password:
+                </Form.Label>
+                <Form.Control
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 />
-            </label>
-            <label>
-                Email:
-                <input
+            </Form.Group>
+
+            <Form.Group controlId="formEmail" style={{ padding: '10px' }}>
+                <Form.Label style={{ fontWeight: 'bold', padding:'3px' }}>
+                    Email:
+                </Form.Label>
+                <Form.Control
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
-                />
-            </label>
-            {/* <label>
-                Birthday:
-                <input
-                type="date"
-                value={birthday}
-                onChange={(e) => setBirthday(e.target.value)}
-                required
-                />
-            </label> */}
-                <button type="submit">Submit</button>
-        </form>
+                required/>
+            </Form.Group>
+            
+            <br />
+            <Button variant="primary" type="submit" style={{ width: '100%' }}>
+                Submit
+            </Button>
+            <p style={{ paddingTop: '20px', textAlign: 'center' }}>
+                Already a member?{' '}
+                <Link to="/login" style={{ fontWeight: 'bold' }}>
+                    Login
+                </Link>
+            </p>
+        </Form>
     );
-};
+    };
+
+//     return (
+//         <form onSubmit={handleSubmit}>
+//             <label>
+//                 Username:
+//                 <input
+//                 type="text"
+//                 value={username}
+//                 onChange={(e) => setUsername(e.target.value)}
+//                 required
+//                 minLength="3"
+//                 />
+//             </label>
+//             <label>
+//                 Password:
+//                 <input
+//                 type="password"
+//                 value={password}
+//                 onChange={(e) => setPassword(e.target.value)}
+//                 required
+//                 />
+//             </label>
+//             <label>
+//                 Email:
+//                 <input
+//                 type="email"
+//                 value={email}
+//                 onChange={(e) => setEmail(e.target.value)}
+//                 required
+//                 />
+//             </label>
+//             {/* <label>
+//                 Birthday:
+//                 <input
+//                 type="date"
+//                 value={birthday}
+//                 onChange={(e) => setBirthday(e.target.value)}
+//                 required
+//                 />
+//             </label> */}
+//                 <button type="submit">Submit</button>
+//         </form>
+//     );
+// };

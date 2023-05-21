@@ -3,6 +3,8 @@ import React from "react";
 import {useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Navigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
@@ -32,6 +34,7 @@ export const LoginView = ({ onLoggedIn }) => {
             localStorage.setItem("user", JSON.stringify(data.user));
             localStorage.setItem("token", data.token);
             onLoggedIn(data.user, data.token);
+            Navigate('/');
         } else {
             alert("No such user");
         }
@@ -39,9 +42,14 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form 
+      onSubmit={handleSubmit}
+      style={{ paddingTop: '45px', display: 'flex', flexDirection: 'column' }}
+      >
       <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
+        <Form.Label style={{ fontWeight: 'bold', padding: '3px' }}>
+          Username:
+          </Form.Label>
         <Form.Control
           type="text"
           value={username}
@@ -52,7 +60,9 @@ export const LoginView = ({ onLoggedIn }) => {
       </Form.Group>
 
       <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
+        <Form.Label style={{ fontWeight: 'bold', padding: '3px' }}>
+          Password:
+          </Form.Label>
         <Form.Control
           type="password"
           value={password}
@@ -60,9 +70,22 @@ export const LoginView = ({ onLoggedIn }) => {
           required
         />
       </Form.Group>
+
       <Button variant="primary" type="submit">
         Submit
       </Button>
+
+      <div className="mt-3">
+        <p style={{ fontWeight: 'bold', padding: '3px', textAlign: 'center' }}>
+          Not a member yet?{' '}
+          <Link
+          style={{ fontWeight: 'bold', padding: '3px', textAlign: 'center' }}
+          to="/signup"
+          >
+            Sign up!
+          </Link>
+        </p>
+      </div>
     </Form>
   );
 };
