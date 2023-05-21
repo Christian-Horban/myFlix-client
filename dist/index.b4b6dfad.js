@@ -43703,14 +43703,13 @@ const SignupView = ()=>{
     const [username, setUsername] = (0, _react.useState)("");
     const [password, setPassword] = (0, _react.useState)("");
     const [email, setEmail] = (0, _react.useState)("");
-    const [birthday, serBirthday] = (0, _react.useState)("");
+    // const [birthday, serBirthday] = useState("");
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
             Username: username,
             Password: password,
-            email: email,
-            Birthday: birthday
+            email: email
         };
         fetch("https://git.heroku.com/horban-movie-api.git/users", {
             method: "POST",
@@ -43786,25 +43785,6 @@ const SignupView = ()=>{
                 lineNumber: 56,
                 columnNumber: 13
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                children: [
-                    "Birthday:",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "date",
-                        value: birthday,
-                        onChange: (e)=>setBirthday(e.target.value),
-                        required: true
-                    }, void 0, false, {
-                        fileName: "src/components/Signup-View/SignupView.jsx",
-                        lineNumber: 67,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/Signup-View/SignupView.jsx",
-                lineNumber: 65,
-                columnNumber: 13
-            }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 type: "submit",
                 children: "Submit"
@@ -43820,7 +43800,7 @@ const SignupView = ()=>{
         columnNumber: 9
     }, undefined);
 };
-_s(SignupView, "i+twTvusOxrqAEAvueoIqHGQFvo=");
+_s(SignupView, "15GYNQRGZwIE4f5LB0Cz/BaTZf4=");
 _c = SignupView;
 var _c;
 $RefreshReg$(_c, "SignupView");

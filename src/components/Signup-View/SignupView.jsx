@@ -4,7 +4,7 @@ export const SignupView = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-    const [birthday, serBirthday] = useState("");
+    // const [birthday, serBirthday] = useState("");
 
 const handleSubmit = (event) => {
     event.preventDefault();
@@ -12,8 +12,8 @@ const handleSubmit = (event) => {
     const data = {
         Username: username,
         Password: password,
-        email: email,
-        Birthday: birthday
+        email: email
+        // Birthday: birthday
     };
 
     fetch("https://git.heroku.com/horban-movie-api.git/users", {
@@ -62,7 +62,7 @@ const handleSubmit = (event) => {
                 required
                 />
             </label>
-            <label>
+            {/* <label>
                 Birthday:
                 <input
                 type="date"
@@ -70,7 +70,7 @@ const handleSubmit = (event) => {
                 onChange={(e) => setBirthday(e.target.value)}
                 required
                 />
-            </label>
+            </label> */}
                 <button type="submit">Submit</button>
         </form>
     );
