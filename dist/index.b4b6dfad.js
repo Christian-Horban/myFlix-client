@@ -27179,7 +27179,7 @@ const MainView = ()=>{
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
     const [user, setUser] = (0, _react.useState)(storedUser ? JSON.parse(storedUser) : null);
-    const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : nul);
+    const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     const [movies, setMovies] = (0, _react.useState)([]);
     const [loggedIn, setLoggedIn] = (0, _react.useState)(false);
     const [searchTerm, setSearchTerm] = (0, _react.useState)("");
@@ -27377,7 +27377,7 @@ const MainView = ()=>{
         columnNumber: 11
     }, undefined);
 };
-_s(MainView, "1pvds/+MrTE5ZdtXa4nh+w2CuIw=");
+_s(MainView, "f6GscSsjP/VoMWM07j+wc+TiuHk=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
