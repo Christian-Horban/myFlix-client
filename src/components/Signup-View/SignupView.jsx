@@ -20,7 +20,7 @@ const handleSubmit = (event) => {
     };
 
     fetch("https://git.heroku.com/horban-movie-api.git/users", {
-        mode: 'no-cors',
+        mode: "no-cors",
         method: "POST",
         body: JSON.stringify(data),
         headers: {
