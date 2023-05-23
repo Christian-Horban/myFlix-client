@@ -22,9 +22,9 @@ const handleSubmit = (event) => {
     fetch("https://git.heroku.com/horban-movie-api.git/users", {
         method: "POST",
         body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json"
-        }
+        // headers: {
+        //     "Content-Type": "application/json"
+        // }
     }).then((response) => {
         if (response.ok) {
             alert("Signup successful");
