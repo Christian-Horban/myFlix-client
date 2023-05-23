@@ -36,7 +36,7 @@ const handleSubmit = (event) => {
 
     })
     .then((response) =>  {
-        if(response.ok) {
+        if (response.ok) {
             alert('Signup successful!');
             Navigate('/login');
         } else {
