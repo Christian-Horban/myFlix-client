@@ -43789,7 +43789,7 @@ const SignupView = ()=>{
             Password: password,
             email: email
         };
-        fetch("https://git.heroku.com/horban-movie-api.git/users", {
+        fetch("https://horban-movie-api.herokuapp.com/", {
             mode: "no-cors",
             method: "POST",
             body: JSON.stringify(data),
