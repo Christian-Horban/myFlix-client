@@ -19,7 +19,7 @@ const handleSubmit = (event) => {
         // Birthday: birthday
     };
 
-    fetch("https://horban-movie-api.herokuapp.com/", {
+    fetch("https://horban-movie-api.herokuapp.com/users", {
         mode: "no-cors",
         method: "POST",
         body: JSON.stringify(data),
