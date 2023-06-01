@@ -20,7 +20,7 @@ const handleSubmit = (event) => {
     };
 
     fetch("https://horban-movie-api.herokuapp.com/users", {
-        mode: "no-cors",
+        // mode: "no-cors",
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -35,15 +35,15 @@ const handleSubmit = (event) => {
         }
 
     })
-    .then((response) =>  {
-        if (response.ok) {
-            alert('Signup successful!');
-            Navigate('/login');
-        } else {
-            alert('Signup failed!');
-        }
-    })
-    .catch((error) => console.log(error));
+    // .then((response) =>  {
+    //     if (response.ok) {
+    //         alert('Signup successful!');
+    //         Navigate('/login');
+    //     } else {
+    //         alert('Signup failed!');
+    //     }
+    // })
+    // .catch((error) => console.log(error));
 };
 
     return (

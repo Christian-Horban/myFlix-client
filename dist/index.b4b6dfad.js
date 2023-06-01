@@ -43790,7 +43790,7 @@ const SignupView = ()=>{
             email: email
         };
         fetch("https://horban-movie-api.herokuapp.com/users", {
-            mode: "no-cors",
+            // mode: "no-cors",
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -43801,12 +43801,16 @@ const SignupView = ()=>{
                 alert("Signup successful");
                 window.location.replace("/login");
             } else alert("Signup failed");
-        }).then((response)=>{
-            if (response.ok) {
-                alert("Signup successful!");
-                (0, _reactRouter.Navigate)("/login");
-            } else alert("Signup failed!");
-        }).catch((error)=>console.log(error));
+        });
+    // .then((response) =>  {
+    //     if (response.ok) {
+    //         alert('Signup successful!');
+    //         Navigate('/login');
+    //     } else {
+    //         alert('Signup failed!');
+    //     }
+    // })
+    // .catch((error) => console.log(error));
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
         className: "signup-view",
