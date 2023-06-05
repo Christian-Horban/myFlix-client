@@ -1,68 +1,60 @@
-import React from "react";
-
-import {useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { Navigate } from "react-router";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import { useNavigate, Link } from 'react-router-dom';
+import './login-view.scss';
 
 export const LoginView = ({ onLoggedIn }) => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] =useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-    //Validation of user login
   const handleSubmit = (event) => {
-    // this prevents the default behavior of the form which is to reload the entire page
     event.preventDefault();
 
     const data = {
-      access: username,
-      secret: password
+      username,
+      password,
     };
 
-    fetch("https://myflix-horban.netlify.app/login", {
-      method: "POST",
-      headers: {
-        "content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
+    fetch('https://myflix-horban.netlify.app/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     })
-    .then((Response) => Response.json())
-    .then((data) => {
-        console.log("Login response: ", data);
-        if (data.user) {
-            localStorage.setItem("user", JSON.stringify(data.user));
-            localStorage.setItem("token", data.token);
-            onLoggedIn(data.user, data.token);
-            Navigate('/');
-        } else {
-            alert("No such user");
-        }
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
+        onLoggedIn(data.user);
+        navigate('/');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   return (
-    <Form 
+    <Form
       onSubmit={handleSubmit}
       style={{ paddingTop: '45px', display: 'flex', flexDirection: 'column' }}
-      >
+    >
       <Form.Group controlId="formUsername">
         <Form.Label style={{ fontWeight: 'bold', padding: '3px' }}>
           Username:
-          </Form.Label>
+        </Form.Label>
         <Form.Control
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          minLength="3" 
+          minLength="3"
         />
       </Form.Group>
-
+      <br />
       <Form.Group controlId="formPassword">
         <Form.Label style={{ fontWeight: 'bold', padding: '3px' }}>
           Password:
-          </Form.Label>
+        </Form.Label>
         <Form.Control
           type="password"
           value={password}
@@ -70,7 +62,7 @@ export const LoginView = ({ onLoggedIn }) => {
           required
         />
       </Form.Group>
-
+      <br />
       <Button variant="primary" type="submit">
         Submit
       </Button>
@@ -79,8 +71,8 @@ export const LoginView = ({ onLoggedIn }) => {
         <p style={{ fontWeight: 'bold', padding: '3px', textAlign: 'center' }}>
           Not a member yet?{' '}
           <Link
-          style={{ fontWeight: 'bold', padding: '3px', textAlign: 'center' }}
-          to="/signup"
+            style={{ fontWeight: 'bold', padding: '3px', textAlign: 'center' }}
+            to="/signup"
           >
             Sign up!
           </Link>
