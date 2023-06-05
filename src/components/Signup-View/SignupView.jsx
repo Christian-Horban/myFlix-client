@@ -19,7 +19,7 @@ const handleSubmit = (event) => {
         // Birthday: birthday
     };
 
-    fetch("https://horban-movie-api.herokuapp.com/users", {
+    fetch("https://myflix-horban.netlify.app/users", {
         // mode: "no-cors",
         method: "POST",
         body: JSON.stringify(data),
@@ -52,7 +52,7 @@ const handleSubmit = (event) => {
         onSubmit={handleSubmit}
         style={{ paddingTop: '45px', display: 'flex', flexDirection: 'column' }}
         >
-            <Form.Group controlId="formUserName" style={{ padding: '10px' }}>
+            <Form.Group controlId="formUsername" style={{ padding: '10px' }}>
                 <Form.Label style={{ fontWeight: 'bold', padding: '3px' }}>
                      Username:
                 </Form.Label>

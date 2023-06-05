@@ -43789,7 +43789,7 @@ const SignupView = ()=>{
             Password: password,
             email: email
         };
-        fetch("https://horban-movie-api.herokuapp.com/users", {
+        fetch("https://myflix-horban.netlify.app/users", {
             // mode: "no-cors",
             method: "POST",
             body: JSON.stringify(data),
@@ -43822,7 +43822,7 @@ const SignupView = ()=>{
         },
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
-                controlId: "formUserName",
+                controlId: "formUsername",
                 style: {
                     padding: "10px"
                 },
