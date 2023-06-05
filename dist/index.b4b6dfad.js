@@ -43614,7 +43614,7 @@ const LoginView = ({ onLoggedIn  })=>{
             access: username,
             secret: password
         };
-        fetch("https://horban-movie-api.herokuapp.com/login", {
+        fetch("https://myflix-horban.netlify.app/login", {
             method: "POST",
             headers: {
                 "content-Type": "application/json"
