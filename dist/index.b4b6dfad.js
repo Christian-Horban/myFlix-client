@@ -43772,25 +43772,27 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "SignupView", ()=>SignupView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
-var _reactBootstrap = require("react-bootstrap");
-var _reactRouter = require("react-router");
-var _reactRouterDom = require("react-router-dom");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _form = require("react-bootstrap/Form");
+var _formDefault = parcelHelpers.interopDefault(_form);
 var _s = $RefreshSig$();
 const SignupView = ()=>{
     _s();
     const [username, setUsername] = (0, _react.useState)("");
     const [password, setPassword] = (0, _react.useState)("");
     const [email, setEmail] = (0, _react.useState)("");
-    // const [birthday, serBirthday] = useState("");
+    const [birthday, setBirthday] = (0, _react.useState)("");
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
             Username: username,
             Password: password,
-            email: email
+            Email: email,
+            Birthday: birthday
         };
         fetch("https://horban-movie-api.herokuapp.com/users", {
-            // mode: "no-cors",
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -43799,84 +43801,107 @@ const SignupView = ()=>{
         }).then((response)=>{
             if (response.ok) {
                 alert("Signup successful");
-                window.location.replace("/login");
-            } else alert("Signup failed");
-            console.log(error.response.message);
+                window.location.reload();
+            } else alert("signup failed");
         });
-    // .then((response) =>  {
-    //     if (response.ok) {
-    //         alert('Signup successful!');
-    //         Navigate('/login');
-    //     } else {
-    //         alert('Signup failed!');
-    //     }
-    // })
-    // .catch((error) => console.log(error));
     };
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
-        className: "signup-view",
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
         onSubmit: handleSubmit,
-        style: {
-            paddingTop: "45px",
-            display: "flex",
-            flexDirection: "column"
-        },
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                 controlId: "formUsername",
-                style: {
-                    padding: "10px"
-                },
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
-                        style: {
-                            fontWeight: "bold",
-                            padding: "3px"
-                        },
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
                         children: "Username:"
                     }, void 0, false, {
                         fileName: "src/components/Signup-View/SignupView.jsx",
-                        lineNumber: 57,
+                        lineNumber: 43,
                         columnNumber: 17
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                         type: "text",
                         value: username,
                         onChange: (e)=>setUsername(e.target.value),
                         required: true,
-                        minLength: "3"
+                        minLength: "6"
                     }, void 0, false, {
                         fileName: "src/components/Signup-View/SignupView.jsx",
-                        lineNumber: 60,
+                        lineNumber: 44,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Signup-View/SignupView.jsx",
-                lineNumber: 56,
+                lineNumber: 42,
                 columnNumber: 13
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                 controlId: "formPassword",
-                style: {
-                    padding: "10px"
-                },
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
-                        style: {
-                            fontWeight: "bold",
-                            padding: "3px"
-                        },
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
                         children: "Password:"
                     }, void 0, false, {
                         fileName: "src/components/Signup-View/SignupView.jsx",
-                        lineNumber: 70,
+                        lineNumber: 53,
                         columnNumber: 17
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                        type: "password",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                        type: "text",
                         value: password,
                         onChange: (e)=>setPassword(e.target.value),
+                        required: true,
+                        minLength: "6"
+                    }, void 0, false, {
+                        fileName: "src/components/Signup-View/SignupView.jsx",
+                        lineNumber: 54,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Signup-View/SignupView.jsx",
+                lineNumber: 52,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                controlId: "formEmail",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                        children: "Email:"
+                    }, void 0, false, {
+                        fileName: "src/components/Signup-View/SignupView.jsx",
+                        lineNumber: 63,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                        type: "text",
+                        value: email,
+                        onChange: (e)=>setEmail(e.target.value),
+                        required: true
+                    }, void 0, false, {
+                        fileName: "src/components/Signup-View/SignupView.jsx",
+                        lineNumber: 64,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Signup-View/SignupView.jsx",
+                lineNumber: 62,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                controlId: "formBirthday",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                        children: "Birthday:"
+                    }, void 0, false, {
+                        fileName: "src/components/Signup-View/SignupView.jsx",
+                        lineNumber: 72,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                        type: "date",
+                        value: birthday,
+                        onChange: (e)=>setBirthday(e.target.value),
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/Signup-View/SignupView.jsx",
@@ -43886,134 +43911,25 @@ const SignupView = ()=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/Signup-View/SignupView.jsx",
-                lineNumber: 69,
+                lineNumber: 71,
                 columnNumber: 13
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
-                controlId: "formEmail",
-                style: {
-                    padding: "10px"
-                },
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
-                        style: {
-                            fontWeight: "bold",
-                            padding: "3px"
-                        },
-                        children: "Email:"
-                    }, void 0, false, {
-                        fileName: "src/components/Signup-View/SignupView.jsx",
-                        lineNumber: 82,
-                        columnNumber: 17
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                        type: "email",
-                        value: email,
-                        onChange: (e)=>setEmail(e.target.value),
-                        required: true
-                    }, void 0, false, {
-                        fileName: "src/components/Signup-View/SignupView.jsx",
-                        lineNumber: 85,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/Signup-View/SignupView.jsx",
-                lineNumber: 81,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                fileName: "src/components/Signup-View/SignupView.jsx",
-                lineNumber: 92,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                variant: "primary",
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                 type: "submit",
-                style: {
-                    width: "100%"
-                },
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/Signup-View/SignupView.jsx",
-                lineNumber: 93,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                style: {
-                    paddingTop: "20px",
-                    textAlign: "center"
-                },
-                children: [
-                    "Already a member?",
-                    " ",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        to: "/login",
-                        style: {
-                            fontWeight: "bold"
-                        },
-                        children: "Login"
-                    }, void 0, false, {
-                        fileName: "src/components/Signup-View/SignupView.jsx",
-                        lineNumber: 98,
-                        columnNumber: 17
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/Signup-View/SignupView.jsx",
-                lineNumber: 96,
+                lineNumber: 80,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Signup-View/SignupView.jsx",
-        lineNumber: 51,
+        lineNumber: 41,
         columnNumber: 9
     }, undefined);
-}; //     return (
- //         <form onSubmit={handleSubmit}>
- //             <label>
- //                 Username:
- //                 <input
- //                 type="text"
- //                 value={username}
- //                 onChange={(e) => setUsername(e.target.value)}
- //                 required
- //                 minLength="3"
- //                 />
- //             </label>
- //             <label>
- //                 Password:
- //                 <input
- //                 type="password"
- //                 value={password}
- //                 onChange={(e) => setPassword(e.target.value)}
- //                 required
- //                 />
- //             </label>
- //             <label>
- //                 Email:
- //                 <input
- //                 type="email"
- //                 value={email}
- //                 onChange={(e) => setEmail(e.target.value)}
- //                 required
- //                 />
- //             </label>
- //             {/* <label>
- //                 Birthday:
- //                 <input
- //                 type="date"
- //                 value={birthday}
- //                 onChange={(e) => setBirthday(e.target.value)}
- //                 required
- //                 />
- //             </label> */}
- //                 <button type="submit">Submit</button>
- //         </form>
- //     );
- // };
-_s(SignupView, "15GYNQRGZwIE4f5LB0Cz/BaTZf4=");
+};
+_s(SignupView, "jsOQN3GC2XlBG9ITlzCdpyJOnso=");
 _c = SignupView;
 var _c;
 $RefreshReg$(_c, "SignupView");
@@ -44023,7 +43939,7 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","react-router":"btA8E","react-router-dom":"fdOAw"}],"bsPVM":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80"}],"bsPVM":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$abf5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
