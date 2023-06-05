@@ -33,6 +33,7 @@ const handleSubmit = (event) => {
         } else {
             alert("Signup failed");
         }
+        console.log(error.response.message)
 
     })
     // .then((response) =>  {
