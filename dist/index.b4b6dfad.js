@@ -43789,7 +43789,7 @@ const SignupView = ()=>{
             Password: password,
             email: email
         };
-        fetch("https://myflix-horban.netlify.app/users", {
+        fetch("https://horban-movie-api.herokuapp.com/users", {
             // mode: "no-cors",
             method: "POST",
             body: JSON.stringify(data),
