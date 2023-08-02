@@ -18,7 +18,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     }, [movieId])
 
     const addFavorite = () => {
-        fetch(`https://git.heroku.com/horban-movie-api.git/users/${user.username}/movies/${movieId}`, {
+        fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
             method: "POST",
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -43,7 +43,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     }
 
     const removeFavorite = () => {
-        fetch(`https://git.heroku.com/horban-movie-api.git/users/${user.username}/movies/${movieId}`, {
+        fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         })
