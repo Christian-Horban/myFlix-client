@@ -27188,6 +27188,7 @@ const MainView = ()=>{
         setToken(null);
         localStorage.clear();
     };
+    const [filteredMovies, setFilteredMovies] = (0, _react.useState)([]);
     (0, _react.useEffect)(()=>{
         if (!token) return;
         fetch("https://horban-movie-api.herokuapp.com/movies", {
@@ -27216,8 +27217,8 @@ const MainView = ()=>{
         loggedIn
     ]);
     (0, _react.useEffect)(()=>{
-        const filteredMovies1 = movies.filter((movie)=>movie.title.toLowerCase().includes(searchTerm.toLowerCase()));
-        setFilteredMovies(filteredMovies1);
+        const filteredMovies = movies.filter((movie)=>movie.title.toLowerCase().includes(searchTerm.toLowerCase()));
+        setFilteredMovies(filteredMovies);
     }, [
         movies,
         searchTerm
@@ -27383,7 +27384,7 @@ const MainView = ()=>{
         columnNumber: 11
     }, undefined);
 };
-_s(MainView, "yTaEWD3r5Nv22//mOHQO1sXETTw=");
+_s(MainView, "lmN5uROciJAs0VY2KsSqUCDxStU=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");

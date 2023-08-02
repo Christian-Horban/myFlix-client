@@ -26,8 +26,8 @@ export const MainView = () => {
       localStorage.clear();
     };
 
-
-
+    const [filteredMovies, setFilteredMovies] = useState([]);
+    
     useEffect(() => {
         if (!token) {
             return;
