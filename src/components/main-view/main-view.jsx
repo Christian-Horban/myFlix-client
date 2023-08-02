@@ -27,7 +27,7 @@ export const MainView = () => {
     };
 
     const filteredMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+    movie.title.includes(searchTerm)
     );
 
     useEffect(() => {
