@@ -91,7 +91,7 @@ export const MainView = () => {
                     path="/"
                     element={
                       user ? (
-                        movies.length !== 0 ? (
+                        filteredMovies.length !== 0 ? (
                           <Row noGutters className="justify-content-center">
                             {filteredMovies.map((movie) => (
                               <Col
