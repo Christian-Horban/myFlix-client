@@ -11,8 +11,8 @@ export const LoginView = ({ onLoggedIn }) => {
     event.preventDefault();
 
     const data = {
-      username,
-      password,
+      Username: username,
+      Password: password,
     };
 
     fetch('https://horban-movie-api.herokuapp.com/login', {
@@ -24,7 +24,7 @@ export const LoginView = ({ onLoggedIn }) => {
       .then((data) => {
         localStorage.setItem('user', JSON.stringify(data.user));
         localStorage.setItem('token', data.token);
-        onLoggedIn(data.user);
+        onLoggedIn(data.user,data.token);
         navigate('/');
       })
       .catch((error) => {
