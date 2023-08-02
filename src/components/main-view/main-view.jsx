@@ -26,9 +26,7 @@ export const MainView = () => {
       localStorage.clear();
     };
 
-    const filteredMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+
 
     useEffect(() => {
         if (!token) {
@@ -58,6 +56,12 @@ export const MainView = () => {
             setMovies(moviesFromApi);
           });
         }, [token, loggedIn]);
+
+        useEffect(() => {
+          const filteredMovies = movies.filter((movie) =>
+          movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+          );
+        }, [movies, searchTerm]);
 
         const updateUserFavorites = (movieId, action) => {
           if (action === 'add') {
