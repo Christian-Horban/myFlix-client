@@ -27200,16 +27200,15 @@ const MainView = ()=>{
                     _id: movie._id,
                     title: movie.title,
                     description: movie.description,
-                    imagePath: movie.imagePath,
+                    // imagePath: movie.imagePath,
                     genre: {
-                        name: movie.genre.name,
-                        description: movie.genre.description
+                        name: movie.Genre.Name,
+                        description: movie.Genre.Description
                     },
                     director: {
-                        name: movie.director.name,
-                        bio: movie.director.bio
-                    },
-                    releaseYear: movie.releaseYear
+                        name: movie.Director.Name,
+                        bio: movie.Director.Bio
+                    }
                 }));
             setMovies(moviesFromApi);
         });
@@ -27433,7 +27432,7 @@ const MovieCard = ({ movie  })=>{
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        to: `/movies/${encodedURIComponent(movie.id)}`,
+                        to: `/movies/${encodedURIComponent(movie._id)}`,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                             variant: "link",
                             children: "Open"
