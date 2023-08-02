@@ -21,7 +21,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
             birthdate
         }
 
-        fetch(`https://git.heroku.com/horban-movie-api.git/users/${user.username}`, {
+        fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {
@@ -50,7 +50,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
 
     const deleteAccount = () => {
         console.log("doin")
-        fetch(`https://git.heroku.com/horban-movie-api.git/users/${user.username}`, {
+        fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         })
