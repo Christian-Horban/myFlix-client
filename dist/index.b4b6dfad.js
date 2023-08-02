@@ -27188,7 +27188,9 @@ const MainView = ()=>{
         setToken(null);
         localStorage.clear();
     };
-    const filteredMovies = movies.filter((movie)=>movie.title.includes(searchTerm));
+    // const filteredMovies = movies.filter((movie) =>
+    // movie.title.includes(searchTerm)
+    // );
     (0, _react.useEffect)(()=>{
         if (!token) return;
         fetch("https://horban-movie-api.herokuapp.com/movies", {
