@@ -61,6 +61,7 @@ export const MainView = () => {
           const filteredMovies = movies.filter((movie) =>
           movie.title.toLowerCase().includes(searchTerm.toLowerCase())
           );
+          setFilteredMovies(filteredMovies);
         }, [movies, searchTerm]);
 
         const updateUserFavorites = (movieId, action) => {
