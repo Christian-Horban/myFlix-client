@@ -35,7 +35,7 @@ export const MainView = () => {
             return;
         }
         
-        fetch("https://git.heroku.com/horban-movie-api.git/movies", {
+        fetch("https://horban-movie-api.herokuapp.com/movies", {
             headers: { Authorization: `Bearer ${token}` }
         })
         .then((response) => response.json())
@@ -123,8 +123,9 @@ export const MainView = () => {
                         ) : (
                           <Col md={12}>
                             <LoginView
-                              onLoggedIn={(user) => {
+                              onLoggedIn={(user, token) => {
                                 setUser(user);
+                                setToken(token);
                                 setLoggedIn(true);
                               }}
                             />
