@@ -27191,7 +27191,7 @@ const MainView = ()=>{
     const filteredMovies = movies.filter((movie)=>movie.title.toLowerCase().includes(searchTerm.toLowerCase()));
     (0, _react.useEffect)(()=>{
         if (!token) return;
-        fetch("https://git.heroku.com/horban-movie-api.git/movies", {
+        fetch("https://horban-movie-api.herokuapp.com/movies", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -27289,8 +27289,9 @@ const MainView = ()=>{
                                     }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                         md: 12,
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
-                                            onLoggedIn: (user)=>{
+                                            onLoggedIn: (user, token)=>{
                                                 setUser(user);
+                                                setToken(token);
                                                 setLoggedIn(true);
                                             }
                                         }, void 0, false, void 0, void 0)
@@ -27306,7 +27307,7 @@ const MainView = ()=>{
                                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, void 0, void 0)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 136,
+                                lineNumber: 137,
                                 columnNumber: 19
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27327,7 +27328,7 @@ const MainView = ()=>{
                                 }, void 0, false, void 0, void 0)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 137,
+                                lineNumber: 138,
                                 columnNumber: 19
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27351,7 +27352,7 @@ const MainView = ()=>{
                                 }, void 0, false, void 0, void 0)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 155,
+                                lineNumber: 156,
                                 columnNumber: 19
                             }, undefined)
                         ]
@@ -43344,7 +43345,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
         movieId
     ]);
     const addFavorite = ()=>{
-        fetch(`https://git.heroku.com/horban-movie-api.git/users/${user.username}/movies/${movieId}`, {
+        fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -43366,7 +43367,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
         });
     };
     const removeFavorite = ()=>{
-        fetch(`https://git.heroku.com/horban-movie-api.git/users/${user.username}/movies/${movieId}`, {
+        fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -43605,8 +43606,8 @@ const LoginView = ({ onLoggedIn  })=>{
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
-            username,
-            password
+            Username: username,
+            Password: password
         };
         fetch("https://horban-movie-api.herokuapp.com/login", {
             method: "POST",
@@ -43617,7 +43618,7 @@ const LoginView = ({ onLoggedIn  })=>{
         }).then((response)=>response.json()).then((data)=>{
             localStorage.setItem("user", JSON.stringify(data.user));
             localStorage.setItem("token", data.token);
-            onLoggedIn(data.user);
+            onLoggedIn(data.user, data.token);
             navigate("/");
         }).catch((error)=>{
             console.error("Error:", error);
@@ -44046,7 +44047,7 @@ const ProfileView = ({ user , token , movies , onLoggedOut , updateUser  })=>{
             email,
             birthdate
         };
-        fetch(`https://git.heroku.com/horban-movie-api.git/users/${user.username}`, {
+        fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {
@@ -44070,7 +44071,7 @@ const ProfileView = ({ user , token , movies , onLoggedOut , updateUser  })=>{
     };
     const deleteAccount = ()=>{
         console.log("doin");
-        fetch(`https://git.heroku.com/horban-movie-api.git/users/${user.username}`, {
+        fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`
