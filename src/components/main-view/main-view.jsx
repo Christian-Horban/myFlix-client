@@ -26,9 +26,9 @@ export const MainView = () => {
       localStorage.clear();
     };
 
-    // const filteredMovies = movies.filter((movie) =>
-    // movie.title.includes(searchTerm)
-    // );
+    const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     useEffect(() => {
         if (!token) {
