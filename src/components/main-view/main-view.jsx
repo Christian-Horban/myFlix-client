@@ -27,7 +27,7 @@ export const MainView = () => {
     };
 
     const [filteredMovies, setFilteredMovies] = useState([]);
-    
+
     useEffect(() => {
         if (!token) {
             return;
@@ -58,9 +58,10 @@ export const MainView = () => {
         }, [token, loggedIn]);
 
         useEffect(() => {
-          const filteredMovies = movies.filter((movie) =>
-          movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-          );
+          const filteredMovies = movies.filter((movie) => {
+            console.log("Here", movie);
+            return movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
+        });
           setFilteredMovies(filteredMovies);
         }, [movies, searchTerm]);
 
