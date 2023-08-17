@@ -43406,7 +43406,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                             children: [
-                                movie.Title,
+                                movies.Title,
                                 " (",
                                 movie.year,
                                 ")"
@@ -43417,7 +43417,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                            children: movie.Description
+                            children: movies.Description
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 76,
