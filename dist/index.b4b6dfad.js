@@ -43406,7 +43406,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                             children: [
-                                movie.title,
+                                movie.Title,
                                 " (",
                                 movie.year,
                                 ")"
@@ -43417,7 +43417,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                            children: movie.description
+                            children: movie.Description
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 76,
@@ -43445,14 +43445,14 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h5", {
-                            children: movie.genre
+                            children: movie.Genre
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 80,
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                            children: movie.genredescription
+                            children: movie.GenreDescription
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 81,
@@ -43467,10 +43467,10 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h5", {
                             children: [
-                                movie.director,
+                                movie.Director,
                                 " (",
-                                movie.directorbirth.slice(0, 10),
-                                movie.directordeath ? ` - ${movie.directordeath.slice(0, 10)}` : "",
+                                movie.Directorbirth.slice(0, 10),
+                                movie.Directordeath ? ` - ${movie.Directordeath.slice(0, 10)}` : "",
                                 ")"
                             ]
                         }, void 0, true, {
@@ -43479,7 +43479,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                             columnNumber: 21
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                            children: movie.directorbio
+                            children: movie.DirectorBio
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 84,
