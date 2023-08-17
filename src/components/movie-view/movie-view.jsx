@@ -74,8 +74,6 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                     {/* <img className="float-start me-3 mb-2" src={movie.image} alt="Movie Cover Image" /> */}
                     <h2>{movies.Title} ({movies.year})</h2>
                     <p>{movies.Description}</p>
-                    <h4>Actors:</h4>
-                    <h5>{movies.actors.join(" - ")}</h5>
                     <h4>Genre: </h4>
                     <h5>{movies.Genre}</h5>
                     <p>{movies.GenreDescription}</p>
