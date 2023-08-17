@@ -78,7 +78,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                     <h5>{movies.Genre}</h5>
                     <p>{movies.GenreDescription}</p>
                     <h4>Director: </h4>
-                    <h5>{movies.Director} ({movies.Directorbirth.slice(0, 10)}{movies.Directordeath ? ` - ${movies.Directordeath.slice(0, 10)}` : ""})</h5>
+                    <h5>{movies.Director} {movies.Directorbirth}</h5>
                     <p>{movies.DirectorBio}</p>
                     <Link to={"/"}>
                         <Button variant="primary">Back</Button>

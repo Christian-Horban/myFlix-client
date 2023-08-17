@@ -43454,10 +43454,8 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h5", {
                             children: [
                                 movies.Director,
-                                " (",
-                                movies.Directorbirth.slice(0, 10),
-                                movies.Directordeath ? ` - ${movies.Directordeath.slice(0, 10)}` : "",
-                                ")"
+                                " ",
+                                movies.Directorbirth
                             ]
                         }, void 0, true, {
                             fileName: "src/components/movie-view/movie-view.jsx",
