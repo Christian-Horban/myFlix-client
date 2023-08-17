@@ -43404,15 +43404,6 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "text-light",
                     children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                            className: "float-start me-3 mb-2",
-                            src: movie.image,
-                            alt: "Movie Cover Image"
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 74,
-                            columnNumber: 21
-                        }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                             children: [
                                 movie.title,

@@ -71,7 +71,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
         <>
             <Col md={12}>
                 <div className="text-light">
-                    <img className="float-start me-3 mb-2" src={movie.image} alt="Movie Cover Image" />
+                    {/* <img className="float-start me-3 mb-2" src={movie.image} alt="Movie Cover Image" /> */}
                     <h2>{movie.title} ({movie.year})</h2>
                     <p>{movie.description}</p>
                     <h4>Actors:</h4>
