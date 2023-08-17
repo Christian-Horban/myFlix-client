@@ -43346,9 +43346,9 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
     const { movieId  } = (0, _reactRouter.useParams)();
     const movie = movies.find((m)=>m.id === movieId);
     const similarMovies = movies.filter((movie)=>movie.genre === movie.genre ? true : false);
-    const [isFavorite, setIsFavorite] = (0, _react.useState)(user.FavoriteMovies.includes(movie.id));
+    const [isFavorite, setIsFavorite] = (0, _react.useState)(user.FavoriteMovies.includes(movieId));
     (0, _react.useEffect)(()=>{
-        setIsFavorite(user.FavoriteMovies.includes(movie.id));
+        setIsFavorite(user.FavoriteMovies.includes(movieId));
         window.scrollTo(0, 0);
     }, [
         movieId
@@ -43560,7 +43560,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         lineNumber: 97,
                         columnNumber: 21
                     }, undefined)
-                }, movie.id, false, {
+                }, movieId, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",
                     lineNumber: 96,
                     columnNumber: 17
@@ -43568,7 +43568,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
         ]
     }, void 0, true);
 };
-_s(MovieView, "OZu1dgkcEaeLBH+1f5+nNY8GNNM=", false, function() {
+_s(MovieView, "U1ZjN6tMhmcPjf0iNkXhRvz1TlQ=", false, function() {
     return [
         (0, _reactRouter.useParams)
     ];

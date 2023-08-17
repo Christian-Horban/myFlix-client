@@ -10,10 +10,10 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     const movie = movies.find(m => m.id === movieId);
     const similarMovies = movies.filter(movie => movie.genre === movie.genre ? true : false)
 
-    const [isFavorite, setIsFavorite] = useState(user.FavoriteMovies.includes(movie.id));
+    const [isFavorite, setIsFavorite] = useState(user.FavoriteMovies.includes(movieId));
 
     useEffect(() => {
-        setIsFavorite(user.FavoriteMovies.includes(movie.id));
+        setIsFavorite(user.FavoriteMovies.includes(movieId));
         window.scrollTo(0, 0);
     }, [movieId])
 
@@ -93,7 +93,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                 </div>
             </Col> 
             {similarMovies.map(movie => (
-                <Col className="mb-4" key={movie.id} xl={2} lg={3} md={4} xs={6}>
+                <Col className="mb-4" key={movieId} xl={2} lg={3} md={4} xs={6}>
                     <MovieCard movie={movie} />
                 </Col>
             ))}
