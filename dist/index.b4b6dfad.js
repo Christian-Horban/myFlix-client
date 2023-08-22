@@ -27198,8 +27198,8 @@ const MainView = ()=>{
         }).then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.map((movie)=>({
                     _id: movie._id,
-                    Title: movie.title,
-                    Description: movie.description,
+                    title: movie.Title,
+                    description: movie.Description,
                     // imagePath: movie.imagePath,
                     genre: {
                         name: movie.Genre.Name,
@@ -27219,7 +27219,7 @@ const MainView = ()=>{
     (0, _react.useEffect)(()=>{
         const filteredMovies = movies.filter((movie)=>{
             console.log("Here", movie);
-            return movie.Title.toLowerCase().includes(searchTerm.toLowerCase());
+            return movie.title.toLowerCase().includes(searchTerm.toLowerCase());
         });
         setFilteredMovies(filteredMovies);
     }, [
@@ -27472,7 +27472,7 @@ const MovieCard = ({ movie  })=>{
 _c = MovieCard;
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
-        Title: (0, _propTypesDefault.default).string.isRequired,
+        title: (0, _propTypesDefault.default).string.isRequired,
         // image: PropTypes.string.isRequired,
         Director: (0, _propTypesDefault.default).string
     }).isRequired
@@ -43552,8 +43552,8 @@ _c = MovieView;
 MovieView.propTypes = {
     movies: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).shape({
         _id: (0, _propTypesDefault.default).string.isRequired,
-        Title: (0, _propTypesDefault.default).string.isRequired,
-        Description: (0, _propTypesDefault.default).string.isRequired,
+        title: (0, _propTypesDefault.default).string.isRequired,
+        description: (0, _propTypesDefault.default).string.isRequired,
         genre: (0, _propTypesDefault.default).string.isRequired,
         director: (0, _propTypesDefault.default).string.isRequired
     }).isRequired)

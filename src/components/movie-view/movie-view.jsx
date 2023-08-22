@@ -102,8 +102,8 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
 MovieView.propTypes = {
     movies: PropTypes.arrayOf(PropTypes.shape({
         _id: PropTypes.string.isRequired,
-        Title: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
         director: PropTypes.string.isRequired,
         // image: PropTypes.string.isRequired

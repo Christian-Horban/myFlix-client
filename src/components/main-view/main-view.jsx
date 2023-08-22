@@ -40,8 +40,8 @@ export const MainView = () => {
         .then((data) => {
             const moviesFromApi = data.map((movie) => ({
               _id: movie._id,
-              Title: movie.title,
-              Description: movie.description,
+              title: movie.Title,
+              description: movie.Description,
               // imagePath: movie.imagePath,
               genre: {
                 name: movie.Genre.Name,
@@ -60,7 +60,7 @@ export const MainView = () => {
         useEffect(() => {
           const filteredMovies = movies.filter((movie) => {
             console.log("Here", movie);
-            return movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
+            return movie.title.toLowerCase().includes(searchTerm.toLowerCase())
         });
           setFilteredMovies(filteredMovies);
         }, [movies, searchTerm]);
