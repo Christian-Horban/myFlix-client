@@ -40,8 +40,8 @@ export const MainView = () => {
         .then((data) => {
             const moviesFromApi = data.map((movie) => ({
               _id: movie._id,
-              Title: movie.Title,
-              Description: movie.Description,
+              Title: movie.title,
+              Description: movie.description,
               // imagePath: movie.imagePath,
               genre: {
                 name: movie.Genre.Name,

@@ -27198,8 +27198,8 @@ const MainView = ()=>{
         }).then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.map((movie)=>({
                     _id: movie._id,
-                    Title: movie.Title,
-                    Description: movie.Description,
+                    Title: movie.title,
+                    Description: movie.description,
                     // imagePath: movie.imagePath,
                     genre: {
                         name: movie.Genre.Name,
@@ -43554,7 +43554,7 @@ MovieView.propTypes = {
         _id: (0, _propTypesDefault.default).string.isRequired,
         Title: (0, _propTypesDefault.default).string.isRequired,
         Description: (0, _propTypesDefault.default).string.isRequired,
-        Genre: (0, _propTypesDefault.default).string.isRequired,
+        genre: (0, _propTypesDefault.default).string.isRequired,
         director: (0, _propTypesDefault.default).string.isRequired
     }).isRequired)
 };
