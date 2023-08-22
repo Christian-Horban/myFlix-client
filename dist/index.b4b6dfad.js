@@ -27203,7 +27203,7 @@ const MainView = ()=>{
                     // imagePath: movie.imagePath,
                     genre: {
                         name: movie.Genre.Name,
-                        Description: movie.Genre.Description
+                        description: movie.Genre.Description
                     },
                     director: {
                         name: movie.Director.Name,
@@ -43554,7 +43554,7 @@ MovieView.propTypes = {
         _id: (0, _propTypesDefault.default).string.isRequired,
         title: (0, _propTypesDefault.default).string.isRequired,
         description: (0, _propTypesDefault.default).string.isRequired,
-        genre: (0, _propTypesDefault.default).string.isRequired,
+        genre: (0, _propTypesDefault.default).object.isRequired,
         director: (0, _propTypesDefault.default).string.isRequired
     }).isRequired)
 };

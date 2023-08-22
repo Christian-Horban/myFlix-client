@@ -104,7 +104,7 @@ MovieView.propTypes = {
         _id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
+        genre: PropTypes.object.isRequired,
         director: PropTypes.string.isRequired,
         // image: PropTypes.string.isRequired
     }).isRequired)

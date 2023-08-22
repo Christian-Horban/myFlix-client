@@ -45,7 +45,7 @@ export const MainView = () => {
               // imagePath: movie.imagePath,
               genre: {
                 name: movie.Genre.Name,
-                Description: movie.Genre.Description,
+                description: movie.Genre.Description,
               },
               director: {
                 name: movie.Director.Name,
