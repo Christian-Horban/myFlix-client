@@ -43559,8 +43559,8 @@ MovieView.propTypes = {
             description: (0, _propTypesDefault.default).string.isRequired
         }).isRequired,
         director: (0, _propTypesDefault.default).shape({
-            Name: (0, _propTypesDefault.default).string.isRequired,
-            Bio: (0, _propTypesDefault.default).string.isRequired
+            name: (0, _propTypesDefault.default).string.isRequired,
+            bio: (0, _propTypesDefault.default).string.isRequired
         }).isRequired
     }).isRequired)
 };
