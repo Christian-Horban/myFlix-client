@@ -105,12 +105,12 @@ MovieView.propTypes = {
         title: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         genre: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            description: PropTypes.string.isRequired,
+            name: PropTypes.string,
+            description: PropTypes.string,
           }).isRequired,
         director:  PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            bio: PropTypes.string.isRequired,
+            name: PropTypes.string,
+            bio: PropTypes.string,
           }).isRequired,
         // image: PropTypes.string.isRequired
     }).isRequired)

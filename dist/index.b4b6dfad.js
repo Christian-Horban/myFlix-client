@@ -43555,12 +43555,12 @@ MovieView.propTypes = {
         title: (0, _propTypesDefault.default).string.isRequired,
         description: (0, _propTypesDefault.default).string.isRequired,
         genre: (0, _propTypesDefault.default).shape({
-            name: (0, _propTypesDefault.default).string.isRequired,
-            description: (0, _propTypesDefault.default).string.isRequired
+            name: (0, _propTypesDefault.default).string,
+            description: (0, _propTypesDefault.default).string
         }).isRequired,
         director: (0, _propTypesDefault.default).shape({
-            name: (0, _propTypesDefault.default).string.isRequired,
-            bio: (0, _propTypesDefault.default).string.isRequired
+            name: (0, _propTypesDefault.default).string,
+            bio: (0, _propTypesDefault.default).string
         }).isRequired
     }).isRequired)
 };
