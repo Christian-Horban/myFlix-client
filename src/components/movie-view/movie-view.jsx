@@ -90,11 +90,11 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                     <h3 className="mt-3 mb-3 text-light">Similar movies:</h3>
                 </div>
             </Col> 
-            {similarMovies.map(movie => (
+            {/* {similarMovies.map(movie => (
                 <Col className="mb-4" key={movieId} xl={2} lg={3} md={4} xs={6}>
                     <MovieCard movie={movie} />
                 </Col>
-            ))}
+            ))} */}
         </>
     );
 };
