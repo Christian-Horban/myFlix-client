@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export const MovieView = ({ movies, user, token, updateUser }) => {
     const { movieId } = useParams();
-    const movie = movies.find(m => m.id === movieId);
+    const movie = movies.find(m => m._id === movieId);
     const similarMovies = movies.filter(movie => movie.genre === movie.genre ? true : false)
 
     const [isFavorite, setIsFavorite] = useState(user.FavoriteMovies.includes(movieId));
@@ -72,10 +72,11 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
             <Col md={12}>
                 <div className="text-light">
                     {/* <img className="float-start me-3 mb-2" src={movie.image} alt="Movie Cover Image" /> */}
-                    <h2>{movies.Title}</h2>
+                    <h2>Title: </h2>
+                    <h2>{movie.Title}</h2>
                     <p>{movies.Description}</p>
                     <h4>Genre: </h4>
-                    <h5>{movies.Genre.Name}</h5>
+                    <h5>{movies.Genre}</h5>
                     <p>{movies.GenreDescription}</p>
                     <h4>Director: </h4>
                     <h5>{movies.Director}</h5>
