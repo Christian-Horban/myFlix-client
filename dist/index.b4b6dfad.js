@@ -43445,12 +43445,8 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h5", {
-                        children: [
-                            movies.Director,
-                            " ",
-                            movie.Directorbirth
-                        ]
-                    }, void 0, true, {
+                        children: movies.Director
+                    }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 81,
                         columnNumber: 21
