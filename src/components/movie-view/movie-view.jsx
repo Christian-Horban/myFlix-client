@@ -81,6 +81,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                     <h4>Director: </h4>
                     <h5>{movies.Director}</h5>
                     <p>{movies.DirectorBio}</p>
+                    console.log("MOVIES", movies)
                     <Link to={"/"}>
                         <Button variant="primary">Back</Button>
                     </Link>
