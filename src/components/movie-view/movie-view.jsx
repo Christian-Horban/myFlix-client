@@ -73,7 +73,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                 <div className="text-light">
                     {/* <img className="float-start me-3 mb-2" src={movie.image} alt="Movie Cover Image" /> */}
                     <h2>Title: </h2>
-                    <h2>{movie.Title}</h2>
+                    <h2>{movies.Title}</h2>
                     <p>{movies.Description}</p>
                     <h4>Genre: </h4>
                     <h5>{movies.Genre}</h5>
@@ -81,7 +81,6 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                     <h4>Director: </h4>
                     <h5>{movies.Director}</h5>
                     <p>{movies.DirectorBio}</p>
-                    console.log("MOVIES", movies)
                     <Link to={"/"}>
                         <Button variant="primary">Back</Button>
                     </Link>

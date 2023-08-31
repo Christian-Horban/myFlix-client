@@ -43410,7 +43410,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                        children: movie.Title
+                        children: movies.Title
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 76,
@@ -43465,7 +43465,6 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         lineNumber: 83,
                         columnNumber: 21
                     }, undefined),
-                    'console.log("MOVIES", movies)',
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                         to: "/",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -43473,12 +43472,12 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                             children: "Back"
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 86,
+                            lineNumber: 85,
                             columnNumber: 25
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 85,
+                        lineNumber: 84,
                         columnNumber: 21
                     }, undefined),
                     isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -43488,7 +43487,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         children: "Remove from favorites"
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 89,
+                        lineNumber: 88,
                         columnNumber: 25
                     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                         variant: "success",
@@ -43497,7 +43496,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         children: "Add to favorites"
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 90,
+                        lineNumber: 89,
                         columnNumber: 27
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
@@ -43505,7 +43504,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         children: "Similar movies:"
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 92,
+                        lineNumber: 91,
                         columnNumber: 21
                     }, undefined)
                 ]
