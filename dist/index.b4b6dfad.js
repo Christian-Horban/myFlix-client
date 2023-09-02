@@ -43403,7 +43403,10 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                        children: "Title: "
+                        style: {
+                            textAlign: "center"
+                        },
+                        children: "Title:"
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 76,
@@ -43424,6 +43427,9 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
+                        style: {
+                            textAlign: "center"
+                        },
                         children: "Genre: "
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
@@ -43445,6 +43451,9 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
+                        style: {
+                            textAlign: "center"
+                        },
                         children: "Director: "
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
