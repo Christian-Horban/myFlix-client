@@ -11,12 +11,12 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     const movie = movies.find(m => m._id === movieId);
     const similarMovies = movies.filter(movie => movie.genre === movie.genre ? true : false)
 
-    const [isFavorite, setIsFavorite] = useState(user.FavoriteMovies.includes(movieId));
+    // const [isFavorite, setIsFavorite] = useState(user.FavoriteMovies.includes(movieId));
 
-    useEffect(() => {
-        setIsFavorite(user.FavoriteMovies.includes(movieId));
-        window.scrollTo(0, 0);
-    }, [movieId])
+    // useEffect(() => {
+    //     setIsFavorite(user.FavoriteMovies.includes(movieId));
+    //     window.scrollTo(0, 0);
+    // }, [movieId])
 
     const addFavorite = () => {
         fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
@@ -94,10 +94,10 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                     <Link to={"/"}>
                         <Button variant="primary">Back</Button>
                     </Link>
-                    {isFavorite ? 
+                    {/* {isFavorite ? 
                         <Button variant="danger" className="ms-2" onClick={removeFavorite}>Remove from favorites</Button>
                         : <Button variant="success" className="ms-2" onClick={addFavorite}>Add to favorites</Button>
-                    }                   
+                    }                    */}
                     <h3 className="mt-3 mb-3 text-light">Similar movies:</h3>
                 </div>
             </Col> 
