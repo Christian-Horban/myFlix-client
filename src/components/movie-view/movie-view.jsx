@@ -72,16 +72,25 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
         <>
             <Col md={12}>
                 <div /*className="text-light"*/>
-                    {/* <img className="float-start me-3 mb-2" src={movie.image} alt="Movie Cover Image" /> */}
-                    <h2 style={{ textAlign: 'center' }}>Title:</h2>
-                    <h2>{movie.title}</h2>
-                    <p>{movie.description}</p>
-                    <h4 style={{ textAlign: 'center' }}>Genre: </h4>
-                    <h5>{movie.genre.name}</h5>
-                    <p>{movie.genre.description}</p>
-                    <h4 style={{ textAlign: 'center' }}>Director: </h4>
-                    <h5>{movie.director.name}</h5>
-                    <p>{movie.director.bio}</p>
+                    
+                    <h2 style={{ textAlign: 'center' }}>{movie.title}</h2>
+                    <img
+                        style={{
+                                display: 'block',
+                                margin: '0 auto',
+                                width: '100%', // Set the width to 100% for uniform size
+                                height: 'auto', // Maintain aspect ratio
+                                padding: '3px', // Add 3px padding on all sides
+                            }}
+                            src={movie.image}
+                            alt="Movie Cover Image"
+        />
+                    <h3 style={{ textAlign: 'center' }}> Description: </h3>
+                    <p style={{ textAlign: 'center' }}>{movie.description}</p>
+                    <h4 style={{ textAlign: 'center' }}>Genre: {movie.genre.name}</h4>
+                    <p style={{ textAlign: 'center' }}>{movie.genre.description}</p>
+                    <h4 style={{ textAlign: 'center' }}>Director: {movie.director.name}</h4>
+                    <p style={{ textAlign: 'center' }}>{movie.director.bio}</p>
                     <Link to={"/"}>
                         <Button variant="primary">Back</Button>
                     </Link>
