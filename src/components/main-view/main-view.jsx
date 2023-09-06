@@ -28,8 +28,6 @@ export const MainView = () => {
       localStorage.clear();
     };
 
-    const [filteredMovies, setFilteredMovies] = useState([]);
-
     useEffect(() => {
         if (!token) {
             return;
@@ -58,26 +56,6 @@ export const MainView = () => {
           });
         }, [token, loggedIn]);
 
-        // useEffect(() => {
-        //   const filteredMovies = movies.filter((movie) => {
-        //     console.log("Here", movie);
-        //     return movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-        // });
-        //   setFilteredMovies(filteredMovies);
-        // }, [movies, searchTerm]);
-
-        // const updateUserFavorites = (movieId, action) => {
-        //   if (action === 'add') {
-        //     setUser({ ...user, favorites: [...user.favorites, movieId] });
-        //   } else if (action === 'remove') {
-        //     setUser({
-        //       ...user,
-        //       favorites: user.favorites.filter((id) => {
-        //         return id !== movieId;
-        //       }),
-        //     });
-        //   }
-        // };
       
         return (
           <BrowserRouter>
@@ -197,28 +175,6 @@ export const MainView = () => {
                 <Navigate to="/login" replace />
               ) : (
                 <Col md={8}>
-                  <updateUser
-                  user={user}
-                  token={token}
-                  setUser={setUser}
-                  movies={movies}
-                  />
-                </Col>
-              )}
-              </>
-             } 
-             >
-
-             </Route>
-
-             <Route
-             path="/profile"
-             element={
-              <>
-              {!user ? (
-                <Navigate to="/login" replace />
-              ) : (
-                <Col md={8}>
                   <ProfileView
                   user={user}
                   token={token}
@@ -255,121 +211,4 @@ export const MainView = () => {
                 </Row>
               </BrowserRouter>
         )
-
-
-
-
-
-
-
-
-
-
-        // return (
-        //   <BrowserRouter>
-        //     <NavigationBar
-        //       user={user}
-        //       onLoggedOut={onLoggedOut}
-        //       searchTerm={searchTerm}
-        //       setSearchTerm={setSearchTerm}
-        //     />
-        //     <Container>
-        //       <div style={{ marginTop: '0px', padding: '45px' }}>
-        //         <Routes>
-        //           <Route
-        //             path="/"
-        //             element={
-        //               user ? (
-        //                 filteredMovies.length !== 0 ? (
-        //                   <Row className="justify-content-center">
-        //                     {filteredMovies.map((movie) => (
-        //                       <Col
-        //                         xs={12}
-        //                         sm={6}
-        //                         md={4}
-        //                         key={movie._id}
-        //                         className="mb-4 movie-col"
-        //                         style={{
-        //                           paddingTop: '55px',
-        //                         }}
-        //                       >
-        //                         <MovieCard movie={movie} />
-        //                       </Col>
-        //                     ))}
-        //                   </Row>
-        //                 ) : (
-        //                   <Row>
-        //                     <Col>The list is empty!</Col>
-        //                   </Row>
-        //                 )
-        //               ) : (
-        //                 <Navigate to="/login" />
-        //               )
-        //             }
-        //           />
-        //           <Route
-        //             path="/login"
-        //             element={
-        //               <>
-        //                 {user ? (
-        //                   <Navigate to="/" />
-        //                 ) : (
-        //                   <Col md={12}>
-        //                     <LoginView
-        //                       onLoggedIn={(user, token) => {
-        //                         setUser(user);
-        //                         setToken(token);
-        //                         setLoggedIn(true);
-        //                       }}
-        //                     />
-        //                   </Col>
-        //                 )}
-        //               </>
-        //             }
-        //           />
-        //           <Route path="/signup" element={<SignupView />} />
-        //           <Route
-        //             path="/movies/:movieId"
-        //             element={
-        //               user ? (
-        //                 <Row className="justify-content-center">
-        //                   <Col md={12} className="mt-3">
-        //                     <MovieView
-        //                       movies={movies}
-        //                       user={user}
-        //                       updateUserFavorites={updateUserFavorites}
-        //                     />
-        //                   </Col>
-        //                 </Row>
-        //               ) : (
-        //                 <Navigate to="/login" />
-        //               )
-        //             }
-        //           />
-        //           <Route
-        //             path="/users/:username"
-        //             element={
-        //               user ? (
-        //                 <Row className="justify-content-center">
-        //                   <Col md={12} className="mt-3">
-        //                     <ProfileView
-        //                       user={user}
-        //                       movies={movies}
-        //                       setMovies={setMovies}
-        //                       setUser={setUser}
-        //                       onLoggedOut={onLoggedOut}
-        //                       updateUserFavorites={updateUserFavorites}
-        //                     />
-        //                   </Col>
-        //                 </Row>
-        //               ) : (
-        //                 <Navigate to="/login" />
-        //               )
-        //             }
-        //           />
-        //         </Routes>
-        //       </div>
-        //     </Container>
-        //   </BrowserRouter>
-        // );
       };
