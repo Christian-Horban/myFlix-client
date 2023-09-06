@@ -1,9 +1,10 @@
 import react from "react";
+import React, {useState, useEffect} from 'react';
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const MovieCard = ({ movie }) => {
+export const MovieCard = ({ movie, user, setUser, token }) => {
 
   const cardBodyStyle = {
     textAlign: 'center',
@@ -26,7 +27,51 @@ export const MovieCard = ({ movie }) => {
     fontSize: '1.2rem',
   };
 
+  const [isFavorite, setIsFavorite] = useState(
+    user && movie && user.FavoriteMovies.includes(movie.id)
+  );
 
+  useEffect(() => {
+    setIsFavorite(user && movie && user.FavoriteMovies.includes(movie.id));
+  }, [user, movie]);
+
+  const handleToggleFavorite = async () => {
+    if (!user || !movie) return;
+
+    let response;
+
+    if (isFavorite) {
+      // Remove the movie from the favorites
+      response = await fetch(
+        `https://horban-movie-api.herokuapp.com/users/${user.Username}/favoriteMovies/${movie._id}`,
+        {
+          method: 'DELETE',
+          headers: {Authorization: `Bearer ${token}`},
+        }
+      );
+    } else {
+      // Add the movie to the favorites
+      response = await fetch(
+        `https://horban-movie-api.herokuapp.com/users/${user.Username}/favoriteMovies/${movie._id}`,
+        {
+          method: 'POST',
+          headers: {Authorization: `Bearer ${token}`},
+        }
+      );
+    }
+
+    if (response.ok) {
+      const userResponse = await response.json();
+      setUser(userResponse.user);
+      setIsFavorite(
+        userResponse.user.FavoriteMovies.some((fm) => fm == movie.id)
+      );
+    } else {
+      console.error('Failed to update favorite movies.');
+    }
+  };
+
+    
     return (
         <Card>
           <div style={cardImageContainerStyle}>
@@ -38,6 +83,13 @@ export const MovieCard = ({ movie }) => {
             <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
                 <Button variant="link" style={buttonStyle} >Open</Button>
             </Link>
+            <Button
+          variant={isFavorite ? 'danger' : 'success'}
+          size="sm"
+          onClick={handleToggleFavorite}
+        >
+          {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        </Button> 
           </Card.Body>
         </Card>
       );
@@ -46,7 +98,10 @@ export const MovieCard = ({ movie }) => {
     MovieCard.propTypes = {
         movie: PropTypes.shape({
             title: PropTypes.string.isRequired,
-            // image: PropTypes.string.isRequired,
+            image: PropTypes.string.isRequired,
             Director: PropTypes.string
-        }).isRequired
+        }).isRequired,
+        user: PropTypes.object, 
+        setUser: PropTypes.func.isRequired, 
+        token: PropTypes.string.isRequired 
     };
