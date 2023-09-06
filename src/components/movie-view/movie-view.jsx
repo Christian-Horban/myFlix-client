@@ -9,64 +9,103 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     console.log("MOVIES", movies);
     const { movieId } = useParams();
     const movie = movies.find(m => m._id === movieId);
-    const similarMovies = movies.filter(movie => movie.genre === movie.genre ? true : false)
+    const [isFavorite, setIsFavorite] = useState(
+        user && movie && user.FavoriteMovies.some((fm) => fm == movie.id)
+      );
+    
+      useEffect(() => {
+        setIsFavorite(
+          user && movie && user.FavoriteMovies.some((fm) => fm == movie.id)
+        );
+      }, [user, movie]);
 
-    // const [isFavorite, setIsFavorite] = useState(user.FavoriteMovies.includes(movieId));
 
-    // useEffect(() => {
-    //     setIsFavorite(user.FavoriteMovies.includes(movieId));
-    //     window.scrollTo(0, 0);
-    // }, [movieId])
 
-    const addFavorite = () => {
-        fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
-            method: "POST",
-            headers: { Authorization: `Bearer ${token}` }
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
+      const handleToggleFavorite = () => {
+        if (!user || !movie) return;
+    
+        fetch(
+          `https://horban-movie-api.herokuapp.com/users/${user.Username}/favoriteMovies/${movie._id}`,
+          {
+            method: isFavorite ? 'DELETE' : 'POST',
+            headers: {Authorization: `Bearer ${token}`},
+          }
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw response;
+            }
+            return response.json();
+          })
+          .then((updatedUserResponse) => {
+            setUser(updatedUserResponse.user);
+            setIsFavorite(
+              updatedUserResponse.user.FavoriteMovies.some((fm) => fm == movie.id)
+            );
+          })
+          .catch((error) => {
+            const contentType = error.headers.get('content-type');
+            if (contentType && contentType.indexOf('application/json') !== -1) {
+              error
+                .json()
+                .then((errorMessage) =>
+                  alert(`An error occurred: ${errorMessage}`)
+                );
             } else {
-                alert("Failed");
-                return false;
+              error.text().then((errorMessage) => alert(errorMessage));
             }
-        })
-        .then(user => {
-            if (user) {
-                alert("Successfully added to favorites");
-                setIsFavorite(true);
-                updateUser(user);
-            }
-        })
-        .catch(e => {
-            alert(e);
-        });
-    }
+          });
+      };
 
-    const removeFavorite = () => {
-        fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
-            method: "DELETE",
-            headers: { Authorization: `Bearer ${token}` }
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                alert("Failed");
-                return false;
-            }
-        })
-        .then(user => {
-            if (user) {
-                alert("Successfully deleted from favorites");
-                setIsFavorite(false);
-                updateUser(user);
-            }
-        })
-        .catch(e => {
-            alert(e);
-        });
-    }
+    // const addFavorite = () => {
+    //     fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+    //         method: "POST",
+    //         headers: { Authorization: `Bearer ${token}` }
+    //     })
+    //     .then(response => {
+    //         if (response.ok) {
+    //             return response.json();
+    //         } else {
+    //             alert("Failed");
+    //             return false;
+    //         }
+    //     })
+    //     .then(user => {
+    //         if (user) {
+    //             alert("Successfully added to favorites");
+    //             setIsFavorite(true);
+    //             updateUser(user);
+    //         }
+    //     })
+    //     .catch(e => {
+    //         alert(e);
+    //     });
+    // }
+
+    // const removeFavorite = () => {
+    //     fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+    //         method: "DELETE",
+    //         headers: { Authorization: `Bearer ${token}` }
+    //     })
+    //     .then(response => {
+    //         if (response.ok) {
+    //             return response.json();
+    //         } else {
+    //             alert("Failed");
+    //             return false;
+    //         }
+    //     })
+    //     .then(user => {
+    //         if (user) {
+    //             alert("Successfully deleted from favorites");
+    //             setIsFavorite(false);
+    //             updateUser(user);
+    //         }
+    //     })
+    //     .catch(e => {
+    //         alert(e);
+    //     });
+    // }
 
     return (
         <>
@@ -94,18 +133,15 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                     <Link to={"/"}>
                         <Button variant="primary">Back</Button>
                     </Link>
-                    {/* {isFavorite ? 
-                        <Button variant="danger" className="ms-2" onClick={removeFavorite}>Remove from favorites</Button>
-                        : <Button variant="success" className="ms-2" onClick={addFavorite}>Add to favorites</Button>
-                    }                    */}
-                    <h3 className="mt-3 mb-3 text-light">Similar movies:</h3>
+                    <Button
+                  variant={isFavorite ? 'danger' : 'success'}
+                  onClick={handleToggleFavorite}
+                  style={{marginTop: '6px', marginLeft: '6px'}}
+                >
+                  {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+                </Button>
                 </div>
             </Col> 
-            {/* {similarMovies.map(movie => (
-                <Col className="mb-4" key={movieId} xl={2} lg={3} md={4} xs={6}>
-                    <MovieCard movie={movie} />
-                </Col>
-            ))} */}
         </>
     );
 };
@@ -123,6 +159,6 @@ MovieView.propTypes = {
             name: PropTypes.string,
             bio: PropTypes.string,
           }).isRequired,
-        // image: PropTypes.string.isRequired
+        image: PropTypes.string.isRequired
     }).isRequired)
 };
