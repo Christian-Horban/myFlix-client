@@ -43,7 +43,7 @@ export const MovieCard = ({ movie, user, setUser, token }) => {
     if (isFavorite) {
       // Remove the movie from the favorites
       response = await fetch(
-        `https://horban-movie-api.herokuapp.com/users/${user.Username}/favoriteMovies/${movie._id}`,
+        `https://horban-movie-api.herokuapp.com/users/${user.Username}/FavoriteMovies/${movie._id}`,
         {
           method: 'DELETE',
           headers: {Authorization: `Bearer ${token}`},
@@ -52,7 +52,7 @@ export const MovieCard = ({ movie, user, setUser, token }) => {
     } else {
       // Add the movie to the favorites
       response = await fetch(
-        `https://horban-movie-api.herokuapp.com/users/${user.Username}/favoriteMovies/${movie._id}`,
+        `https://horban-movie-api.herokuapp.com/users/${user.Username}/FavoriteMovies/${movie._id}`,
         {
           method: 'POST',
           headers: {Authorization: `Bearer ${token}`},

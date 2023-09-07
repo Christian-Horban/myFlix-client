@@ -25,7 +25,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
         if (!user || !movie) return;
     
         fetch(
-          `https://horban-movie-api.herokuapp.com/users/${user.Username}/favoriteMovies/${movie._id}`,
+          `https://horban-movie-api.herokuapp.com/users/${user.Username}/FavoriteMovies/${movie._id}`,
           {
             method: isFavorite ? 'DELETE' : 'POST',
             headers: {Authorization: `Bearer ${token}`},
