@@ -2,16 +2,18 @@ import { useState } from "react";
 import { Card, Col, Form, Button } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, token, movie, onLoggedOut, updateUser }) => {
+export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [birthdate, setBirthdate] = useState("");
 
-    let favoriteMovies = movie.filter((m) =>
-    profile.FavoriteMovies.includes(m.id)
-  );    
+    let favoriteMovies = movies.filter((m) => {
+        console.log("movie:", m);
+    user.FavoriteMovies.includes(m.id)
+    });   
+
     const handleSubmit = event => {
         event.preventDefault();
 
@@ -132,7 +134,7 @@ export const ProfileView = ({ user, token, movie, onLoggedOut, updateUser }) => 
                 <Col className="mb-4" key={movie.id} md={3}>
                 <MovieCard
                     key={movie.id}
-                    movie={movie}
+                    movies={movies}
                     user={user}
                     setUser={setUser}
                     token={token}
