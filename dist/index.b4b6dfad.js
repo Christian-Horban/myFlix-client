@@ -27431,15 +27431,22 @@ const MovieCard = ({ movie , user , setUser , token  })=>{
     const buttonStyle = {
         fontSize: "1.2rem"
     };
-    const [isFavorite, setIsFavorite] = (0, _react.useState)(user && movie && user.FavoriteMovies.includes(movie.id));
+    const [isFavorite, setIsFavorite] = (0, _react.useState)(user && movie && user.FavoriteMovies.includes(movie._id));
     (0, _react.useEffect)(()=>{
-        setIsFavorite(user && movie && user.FavoriteMovies.includes(movie.id));
+        setIsFavorite(user && movie && user.FavoriteMovies.includes(movie._id));
     }, [
         user,
         movie
     ]);
     const handleToggleFavorite = async ()=>{
-        if (!user || !movie) return;
+        if (!user || !movie) {
+            console.log("User or movie is undefined.");
+            return;
+        }
+        if (!user.FavoriteMovies) {
+            console.log("FavoriteMovies is undefined in user.");
+            return;
+        }
         let response;
         if (isFavorite) // Remove the movie from the favorites
         response = await fetch(`https://horban-movie-api.herokuapp.com/users/${user.Username}/FavoriteMovies/${movie._id}`, {
@@ -27457,9 +27464,11 @@ const MovieCard = ({ movie , user , setUser , token  })=>{
         });
         if (response.ok) {
             const userResponse = await response.json();
+            console.log("userResponse:", userResponse);
             setUser(userResponse.user);
-            setIsFavorite(userResponse.user.FavoriteMovies.some((fm)=>fm == movie.id));
-        } else console.error("Failed to update favorite movies.");
+            if (userResponse.user.FavoriteMovies) setIsFavorite(userResponse.user.FavoriteMovies.some((fm)=>fm == movie.id));
+            else console.log("FavoriteMovies is undefined in updated user.");
+        } else console.log("Failed to update favorite movies.");
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         children: [
@@ -27471,12 +27480,12 @@ const MovieCard = ({ movie , user , setUser , token  })=>{
                     style: imageStyle
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 78,
+                    lineNumber: 93,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 77,
+                lineNumber: 92,
                 columnNumber: 11
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -27486,7 +27495,7 @@ const MovieCard = ({ movie , user , setUser , token  })=>{
                         children: movie.title
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 81,
+                        lineNumber: 96,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -27497,12 +27506,12 @@ const MovieCard = ({ movie , user , setUser , token  })=>{
                             children: "Open"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 84,
+                            lineNumber: 99,
                             columnNumber: 17
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 83,
+                        lineNumber: 98,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -27512,23 +27521,23 @@ const MovieCard = ({ movie , user , setUser , token  })=>{
                         children: isFavorite ? "Remove from Favorites" : "Add to Favorites"
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 86,
+                        lineNumber: 101,
                         columnNumber: 13
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 80,
+                lineNumber: 95,
                 columnNumber: 11
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 76,
+        lineNumber: 91,
         columnNumber: 9
     }, undefined);
 };
-_s(MovieCard, "OAurc1cjmuvnV9im2MTVgI4XPX0=");
+_s(MovieCard, "6HXTDozqrQEvEIzLZqkimET0vbc=");
 _c = MovieCard;
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
@@ -43409,80 +43418,48 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
     console.log("MOVIES", movies);
     const { movieId  } = (0, _reactRouter.useParams)();
     const movie = movies.find((m)=>m._id === movieId);
-    const [isFavorite, setIsFavorite] = (0, _react.useState)(user && movie && user.FavoriteMovies.some((fm)=>fm == movie.id));
-    (0, _react.useEffect)(()=>{
-        setIsFavorite(user && movie && user.FavoriteMovies.some((fm)=>fm == movie.id));
-    }, [
-        user,
-        movie
-    ]);
-    const handleToggleFavorite = ()=>{
-        if (!user || !movie) return;
-        fetch(`https://horban-movie-api.herokuapp.com/users/${user.Username}/FavoriteMovies/${movie._id}`, {
-            method: isFavorite ? "DELETE" : "POST",
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            if (!response.ok) throw response;
-            return response.json();
-        }).then((updatedUserResponse)=>{
-            setUser(updatedUserResponse.user);
-            setIsFavorite(updatedUserResponse.user.FavoriteMovies.some((fm)=>fm == movie.id));
-        }).catch((error)=>{
-            const contentType = error.headers.get("content-type");
-            if (contentType && contentType.indexOf("application/json") !== -1) error.json().then((errorMessage)=>alert(`An error occurred: ${errorMessage}`));
-            else error.text().then((errorMessage)=>alert(errorMessage));
-        });
-    };
-    // const addFavorite = () => {
-    //     fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
-    //         method: "POST",
-    //         headers: { Authorization: `Bearer ${token}` }
-    //     })
-    //     .then(response => {
-    //         if (response.ok) {
-    //             return response.json();
+    // const [isFavorite, setIsFavorite] = useState(
+    //     user && movie && user.FavoriteMovies.includes(movie._id)
+    //   );
+    //   useEffect(() => {
+    //     setIsFavorite(
+    //       user && movie && user.FavoriteMovies.some((fm) => fm == movie._id)
+    //     );
+    //   }, [user, movie]);
+    //   const handleToggleFavorite = () => {
+    //     if (!user || !movie) return;
+    //     fetch(
+    //       `https://horban-movie-api.herokuapp.com/users/${user.Username}/FavoriteMovies/${movie._id}`,
+    //       {
+    //         method: isFavorite ? 'DELETE' : 'POST',
+    //         headers: {Authorization: `Bearer ${token}`},
+    //       }
+    //     )
+    //       .then((response) => {
+    //         if (!response.ok) {
+    //           throw response;
+    //         }
+    //         return response.json();
+    //       })
+    //       .then((updatedUserResponse) => {
+    //         setUser(updatedUserResponse.user);
+    //         setIsFavorite(
+    //           updatedUserResponse.user.FavoriteMovies.some((fm) => fm == movie._id)
+    //         );
+    //       })
+    //       .catch((error) => {
+    //         const contentType = error.headers.get('content-type');
+    //         if (contentType && contentType.indexOf('application/json') !== -1) {
+    //           error
+    //             .json()
+    //             .then((errorMessage) =>
+    //               alert(`An error occurred: ${errorMessage}`)
+    //             );
     //         } else {
-    //             alert("Failed");
-    //             return false;
+    //           error.text().then((errorMessage) => alert(errorMessage));
     //         }
-    //     })
-    //     .then(user => {
-    //         if (user) {
-    //             alert("Successfully added to favorites");
-    //             setIsFavorite(true);
-    //             updateUser(user);
-    //         }
-    //     })
-    //     .catch(e => {
-    //         alert(e);
-    //     });
-    // }
-    // const removeFavorite = () => {
-    //     fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
-    //         method: "DELETE",
-    //         headers: { Authorization: `Bearer ${token}` }
-    //     })
-    //     .then(response => {
-    //         if (response.ok) {
-    //             return response.json();
-    //         } else {
-    //             alert("Failed");
-    //             return false;
-    //         }
-    //     })
-    //     .then(user => {
-    //         if (user) {
-    //             alert("Successfully deleted from favorites");
-    //             setIsFavorite(false);
-    //             updateUser(user);
-    //         }
-    //     })
-    //     .catch(e => {
-    //         alert(e);
-    //     });
-    // }
+    //       });
+    //   };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
             md: 12,
@@ -43495,7 +43472,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         children: movie.title
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 115,
+                        lineNumber: 67,
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
@@ -43510,7 +43487,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         alt: "Movie Cover Image"
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 116,
+                        lineNumber: 68,
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
@@ -43520,7 +43497,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         children: " Description: "
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 127,
+                        lineNumber: 79,
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -43530,7 +43507,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         children: movie.description
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 128,
+                        lineNumber: 80,
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
@@ -43543,7 +43520,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 129,
+                        lineNumber: 81,
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -43553,7 +43530,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         children: movie.genre.description
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 130,
+                        lineNumber: 82,
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
@@ -43566,7 +43543,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 131,
+                        lineNumber: 83,
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -43576,7 +43553,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         children: movie.director.bio
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 132,
+                        lineNumber: 84,
                         columnNumber: 21
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -43586,41 +43563,28 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                             children: "Back"
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 134,
+                            lineNumber: 86,
                             columnNumber: 25
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 133,
-                        columnNumber: 21
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                        variant: isFavorite ? "danger" : "success",
-                        onClick: handleToggleFavorite,
-                        style: {
-                            marginTop: "6px",
-                            marginLeft: "6px"
-                        },
-                        children: isFavorite ? "Remove from Favorites" : "Add to Favorites"
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 136,
+                        lineNumber: 85,
                         columnNumber: 21
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 113,
+                lineNumber: 65,
                 columnNumber: 17
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/movie-view/movie-view.jsx",
-            lineNumber: 112,
+            lineNumber: 64,
             columnNumber: 13
         }, undefined)
     }, void 0, false);
 };
-_s(MovieView, "WPB0MGPoaHkGLnLp2ZuKzIGXfw4=", false, function() {
+_s(MovieView, "e2L2DPdRH1AShA7yIOCsYRlzvlI=", false, function() {
     return [
         (0, _reactRouter.useParams)
     ];
