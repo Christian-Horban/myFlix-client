@@ -28,15 +28,23 @@ export const MovieCard = ({ movie, user, setUser, token }) => {
   };
 
   const [isFavorite, setIsFavorite] = useState(
-    user && movie && user.FavoriteMovies.includes(movie.id)
+    user && movie && user.FavoriteMovies.includes(movie._id)
   );
 
   useEffect(() => {
-    setIsFavorite(user && movie && user.FavoriteMovies.includes(movie.id));
+    setIsFavorite(user && movie && user.FavoriteMovies.includes(movie._id));
   }, [user, movie]);
 
   const handleToggleFavorite = async () => {
-    if (!user || !movie) return;
+    if (!user || !movie) {
+      console.log('User or movie is undefined.');
+      return;
+    }
+
+    if (!user.FavoriteMovies) {
+      console.log('FavoriteMovies is undefined in user.');
+      return;
+    }
 
     let response;
 
@@ -62,12 +70,19 @@ export const MovieCard = ({ movie, user, setUser, token }) => {
 
     if (response.ok) {
       const userResponse = await response.json();
-      setUser(userResponse.user);
-      setIsFavorite(
-        userResponse.user.FavoriteMovies.some((fm) => fm == movie.id)
-      );
+console.log('userResponse:', userResponse);
+setUser(userResponse.user);
+
+  
+      if (userResponse.user.FavoriteMovies) {
+        setIsFavorite(
+          userResponse.user.FavoriteMovies.some((fm) => fm == movie.id)
+        );
+      } else {
+        console.log('FavoriteMovies is undefined in updated user.');
+      }
     } else {
-      console.error('Failed to update favorite movies.');
+      console.log('Failed to update favorite movies.');
     }
   };
 
