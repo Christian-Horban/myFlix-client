@@ -1,74 +1,94 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, Col, Form, Button } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
+import { Link } from "react-router-dom";
 
 export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) => {
-
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [birthdate, setBirthdate] = useState("");
+    const [favoriteMovies, setFavoriteMovies] = useState([]);
 
-    let favoriteMovies = movies.filter((m) => {
-        console.log("movie:", m);
-    user.FavoriteMovies.includes(m.id)
-    });   
-
-    const handleSubmit = event => {
-        event.preventDefault();
-
-        const data = {
-            username,
-            password,
-            email,
-            birthdate
+  useEffect(() => {
+    // Fetch user's data, including favorite movies, when the component mounts
+    fetch(`https://horban-movie-api.herokuapp.com/users/${user.Username}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data.");
         }
+        return response.json();
+      })
+      .then((userData) => {
+        // Extract favoriteMovies from userData
+        if (userData.FavoriteMovies) {
+          setFavoriteMovies(userData.FavoriteMovies);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, [user.Username, token]);
 
-        fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}`, {
-            method: "PUT",
-            body: JSON.stringify(data),
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                alert("Changing userdata failed");
-                return false;
-            }
-        })
-        .then(user => {
-            if (user) {
-                alert("Successfully changed userdata");
-                updateUser(user);
-            }
-        })
-        .catch(e => {
-            alert(e);
-        });
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const deleteAccount = () => {
-        console.log("doin")
-        fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}`, {
-            method: "DELETE",
-            headers: { Authorization: `Bearer ${token}` }
-        })
-        .then(response => {
-            if (response.ok) {
-                alert("Your account has been deleted. Good Bye!");
-                onLoggedOut();
-            } else {
-                alert("Could not delete account");
-            }
-        })
-        .catch(e => {
-            alert(e);
-        });
-    }
+    const data = {
+      username,
+      password,
+      email,
+      birthdate,
+    };
+
+    fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert("Changing userdata failed");
+          return false;
+        }
+      })
+      .then((updatedUser) => {
+        if (updatedUser) {
+          alert("Successfully changed userdata");
+          updateUser(updatedUser);
+        }
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  };
+
+  const deleteAccount = () => {
+    fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Your account has been deleted. Good Bye!");
+          onLoggedOut();
+        } else {
+          alert("Could not delete account");
+        }
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  };
 
    
 
@@ -128,19 +148,25 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
             </Col>
             
             <Col md={12}>
-                <h3 className="mt-3 mb-3 text-light">Your favorite movies:</h3>
+                <h3>Your favorite movies:</h3>
 
-                {favoriteMovies.map((movie) => (
-                <Col className="mb-4" key={movie.id} md={3}>
-                <MovieCard
-                    key={movie.id}
-                    movies={movies}
-                    user={user}
-                    setUser={setUser}
-                    token={token}
-                />
-                </Col>
-            ))}
+                {console.log(favoriteMovies)}
+
+                {favoriteMovies.map((movie, index) => (
+                    <Col className="mb-4" key={`${movie._id}-${index}`} md={3}>
+    <Card>
+      <Card.Body>
+        <Card.Title>{movie.title}</Card.Title> {/* Movie title displayed here */}
+        <Card.Text>{movie.description}</Card.Text> {/* Movie description displayed here */}
+      </Card.Body>
+    </Card>
+  </Col>
+))}
+
+
+
+
+
             </Col>
 
             <Col md={6}>           
