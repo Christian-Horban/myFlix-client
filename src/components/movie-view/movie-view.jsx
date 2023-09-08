@@ -9,103 +9,55 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     console.log("MOVIES", movies);
     const { movieId } = useParams();
     const movie = movies.find(m => m._id === movieId);
-    const [isFavorite, setIsFavorite] = useState(
-        user && movie && user.FavoriteMovies.some((fm) => fm == movie.id)
-      );
+    // const [isFavorite, setIsFavorite] = useState(
+    //     user && movie && user.FavoriteMovies.includes(movie._id)
+    //   );
+      
     
-      useEffect(() => {
-        setIsFavorite(
-          user && movie && user.FavoriteMovies.some((fm) => fm == movie.id)
-        );
-      }, [user, movie]);
+    //   useEffect(() => {
+    //     setIsFavorite(
+    //       user && movie && user.FavoriteMovies.some((fm) => fm == movie._id)
+    //     );
+    //   }, [user, movie]);
 
 
 
-      const handleToggleFavorite = () => {
-        if (!user || !movie) return;
+    //   const handleToggleFavorite = () => {
+    //     if (!user || !movie) return;
     
-        fetch(
-          `https://horban-movie-api.herokuapp.com/users/${user.Username}/FavoriteMovies/${movie._id}`,
-          {
-            method: isFavorite ? 'DELETE' : 'POST',
-            headers: {Authorization: `Bearer ${token}`},
-          }
-        )
-          .then((response) => {
-            if (!response.ok) {
-              throw response;
-            }
-            return response.json();
-          })
-          .then((updatedUserResponse) => {
-            setUser(updatedUserResponse.user);
-            setIsFavorite(
-              updatedUserResponse.user.FavoriteMovies.some((fm) => fm == movie.id)
-            );
-          })
-          .catch((error) => {
-            const contentType = error.headers.get('content-type');
-            if (contentType && contentType.indexOf('application/json') !== -1) {
-              error
-                .json()
-                .then((errorMessage) =>
-                  alert(`An error occurred: ${errorMessage}`)
-                );
-            } else {
-              error.text().then((errorMessage) => alert(errorMessage));
-            }
-          });
-      };
-
-    // const addFavorite = () => {
-    //     fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
-    //         method: "POST",
-    //         headers: { Authorization: `Bearer ${token}` }
-    //     })
-    //     .then(response => {
-    //         if (response.ok) {
-    //             return response.json();
+    //     fetch(
+    //       `https://horban-movie-api.herokuapp.com/users/${user.Username}/FavoriteMovies/${movie._id}`,
+    //       {
+    //         method: isFavorite ? 'DELETE' : 'POST',
+    //         headers: {Authorization: `Bearer ${token}`},
+    //       }
+    //     )
+    //       .then((response) => {
+    //         if (!response.ok) {
+    //           throw response;
+    //         }
+    //         return response.json();
+    //       })
+    //       .then((updatedUserResponse) => {
+    //         setUser(updatedUserResponse.user);
+    //         setIsFavorite(
+    //           updatedUserResponse.user.FavoriteMovies.some((fm) => fm == movie._id)
+    //         );
+    //       })
+    //       .catch((error) => {
+    //         const contentType = error.headers.get('content-type');
+    //         if (contentType && contentType.indexOf('application/json') !== -1) {
+    //           error
+    //             .json()
+    //             .then((errorMessage) =>
+    //               alert(`An error occurred: ${errorMessage}`)
+    //             );
     //         } else {
-    //             alert("Failed");
-    //             return false;
+    //           error.text().then((errorMessage) => alert(errorMessage));
     //         }
-    //     })
-    //     .then(user => {
-    //         if (user) {
-    //             alert("Successfully added to favorites");
-    //             setIsFavorite(true);
-    //             updateUser(user);
-    //         }
-    //     })
-    //     .catch(e => {
-    //         alert(e);
-    //     });
-    // }
+    //       });
+    //   };
 
-    // const removeFavorite = () => {
-    //     fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}/movies/${movieId}`, {
-    //         method: "DELETE",
-    //         headers: { Authorization: `Bearer ${token}` }
-    //     })
-    //     .then(response => {
-    //         if (response.ok) {
-    //             return response.json();
-    //         } else {
-    //             alert("Failed");
-    //             return false;
-    //         }
-    //     })
-    //     .then(user => {
-    //         if (user) {
-    //             alert("Successfully deleted from favorites");
-    //             setIsFavorite(false);
-    //             updateUser(user);
-    //         }
-    //     })
-    //     .catch(e => {
-    //         alert(e);
-    //     });
-    // }
 
     return (
         <>
@@ -133,13 +85,13 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                     <Link to={"/"}>
                         <Button variant="primary">Back</Button>
                     </Link>
-                    <Button
+                    {/* <Button
                   variant={isFavorite ? 'danger' : 'success'}
                   onClick={handleToggleFavorite}
                   style={{marginTop: '6px', marginLeft: '6px'}}
                 >
                   {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-                </Button>
+                </Button> */}
                 </div>
             </Col> 
         </>
