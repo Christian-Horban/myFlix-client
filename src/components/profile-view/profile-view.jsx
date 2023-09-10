@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Card, Col, Form, Button } from "react-bootstrap";
-import { MovieCard } from "../movie-card/movie-card";
+import { Card, Col, Form, Button, Container, Row } from "react-bootstrap"; // Import Container, Row, and Colimport { MovieCard } from "../movie-card/movie-card";
 import { Link } from "react-router-dom";
 
 export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) => {
@@ -10,30 +9,58 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
     const [birthdate, setBirthdate] = useState("");
     const [favoriteMovies, setFavoriteMovies] = useState([]);
 
-  useEffect(() => {
-    // Fetch user's data, including favorite movies, when the component mounts
-    fetch(`https://horban-movie-api.herokuapp.com/users/${user.Username}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch user data.");
-        }
-        return response.json();
-      })
-      .then((userData) => {
-        // Extract favoriteMovies from userData
-        if (userData.FavoriteMovies) {
-          setFavoriteMovies(userData.FavoriteMovies);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-      });
-  }, [user.Username, token]);
+    useEffect(() => {
+        // Fetch user's data, including favorite movies, when the component mounts
+        fetch(`https://horban-movie-api.herokuapp.com/users/${user.Username}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to fetch user data.");
+            }
+            return response.json();
+          })
+          .then((userData) => {
+            // Extract favoriteMovies from userData
+            if (userData.FavoriteMovies) {
+              // Fetch all movies
+              fetch(`https://horban-movie-api.herokuapp.com/movies`, {
+                method: "GET",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              })
+                .then((response) => {
+                  if (!response.ok) {
+                    throw new Error("Failed to fetch movies.");
+                  }
+                  return response.json();
+                })
+                .then((allMovies) => {
+                  // Filter movies that match favoriteMovie IDs
+                  const favoriteMovieDetails = allMovies.filter((movie) =>
+                    userData.FavoriteMovies.includes(movie._id)
+                  );
+                  // Update the favoriteMovies array with movie details
+                  setFavoriteMovies(favoriteMovieDetails);
+                })
+                .catch((error) => {
+                  console.error("Error fetching movies:", error);
+                });
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching user data:", error);
+          });
+      }, [user.Username, token]);
+
+
+
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -147,27 +174,24 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                 </Card>
             </Col>
             
-            <Col md={12}>
-                <h3>Your favorite movies:</h3>
-
-                {console.log(favoriteMovies)}
-
-                {favoriteMovies.map((movie, index) => (
-                    <Col className="mb-4" key={`${movie._id}-${index}`} md={3}>
-    <Card>
-      <Card.Body>
-        <Card.Title>{movie.title}</Card.Title> {/* Movie title displayed here */}
-        <Card.Text>{movie.description}</Card.Text> {/* Movie description displayed here */}
-      </Card.Body>
-    </Card>
-  </Col>
-))}
-
-
-
-
-
-            </Col>
+            <Container>
+  <h3>Your favorite movies:</h3>
+  <Row>
+    {favoriteMovies.map((movie, index) => (
+      <Col key={`${movie._id}-${index}`} xs={12}>
+        <Card className="mb-4">
+          <Card.Body>
+            <Card.Title>{movie.Title}</Card.Title>
+            <Card.Text>{movie.Description}</Card.Text>
+            <Link to={`/movies/${movie._id}`}>
+              <Button variant="primary">View Movie</Button>
+            </Link>
+          </Card.Body>
+        </Card>
+      </Col>
+    ))}
+  </Row>
+</Container>
 
             <Col md={6}>           
                 <Card className="mt-2 mb-3">
