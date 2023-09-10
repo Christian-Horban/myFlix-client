@@ -47,6 +47,7 @@ export const MovieCard = ({ movie, user, setUser, token }) => {
     }
 
     let response;
+    
 
     if (isFavorite) {
       // Remove the movie from the favorites
