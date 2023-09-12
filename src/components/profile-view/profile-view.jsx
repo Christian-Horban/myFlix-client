@@ -3,8 +3,8 @@ import { Card, Col, Form, Button, Container, Row } from "react-bootstrap"; // Im
 import { Link } from "react-router-dom";
 
 export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [Username, setUsername] = useState("");
+    const [Password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [birthdate, setBirthdate] = useState("");
     const [favoriteMovies, setFavoriteMovies] = useState([]);
@@ -66,56 +66,61 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
     event.preventDefault();
 
     const data = {
-      username,
-      password,
+      Username,
+      Password,
       email,
       birthdate,
     };
 
-    fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}`, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          alert("Changing userdata failed");
-          return false;
-        }
+    fetch(`https://horban-movie-api.herokuapp.com/users/${user.Username}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       })
-      .then((updatedUser) => {
-        if (updatedUser) {
-          alert("Successfully changed userdata");
-          updateUser(updatedUser);
-        }
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            console.error("Updating user data failed:", response.statusText);
+            alert("Changing userdata failed");
+            return false;
+          }
+        })
+        .then((updatedUser) => {
+          if (updatedUser) {
+            console.log("User data updated successfully:", updatedUser);
+            alert("Successfully changed userdata");
+            updateUser(updatedUser);
+          }
+        })
+        .catch((e) => {
+          console.error("Error updating user data:", e);
+          alert(e);
+        });
+    };
+    
+    const deleteAccount = () => {
+      fetch(`https://horban-movie-api.herokuapp.com/users/${user.Username}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
       })
-      .catch((e) => {
-        alert(e);
-      });
-  };
-
-  const deleteAccount = () => {
-    fetch(`https://horban-movie-api.herokuapp.com/users/${user.username}`, {
-      method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert("Your account has been deleted. Good Bye!");
-          onLoggedOut();
-        } else {
-          alert("Could not delete account");
-        }
-      })
-      .catch((e) => {
-        alert(e);
-      });
-  };
+        .then((response) => {
+          if (response.ok) {
+            alert("Your account has been deleted. Good Bye!");
+            onLoggedOut();
+          } else {
+            console.error("Deleting account failed:", response.statusText);
+            alert("Could not delete account");
+          }
+        })
+        .catch((e) => {
+          console.error("Error deleting account:", e);
+          alert(e);
+        });
+    };
 
    
 
@@ -130,7 +135,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                                 <Form.Label>Username:</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    value={username}
+                                    value={Username}
                                     onChange={e => setUsername(e.target.value)}
                                     required
                                     minLength="5"
@@ -141,30 +146,10 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                                 <Form.Label>Password:</Form.Label>
                                 <Form.Control
                                     type="password"
-                                    value={password}
+                                    value={Password}
                                     onChange={e => setPassword(e.target.value)}
                                     required
-                                    minLength="8"
-                                    className="bg-light"
-                                />
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Label>Email:</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    value={email}
-                                    onChange={e => setEmail(e.target.value)}
-                                    required
-                                    className="bg-light"
-                                />
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Label>Birthdate:</Form.Label>
-                                <Form.Control
-                                    type="date"
-                                    value={birthdate}
-                                    onChange={e => setBirthdate(e.target.value)}
-                                    required
+                                    minLength="0"
                                     className="bg-light"
                                 />
                             </Form.Group>
