@@ -12,15 +12,16 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
 
     return (
         <Col md={12}>
-          <Card>
-            <Card.Body>
-              <Card.Title className="text-center">{movie.title}</Card.Title>
-              <Card.Img
+          <Card style={{ width: "18rem" }}>
+          <Card.Img
+                variant="top"
                 src={movie.image}
                 alt="Movie Cover Image"
                 className="mx-auto d-block"
                 style={{ maxWidth: "100%" }}
               />
+            <Card.Body>
+              <Card.Title className="text-center">{movie.title}</Card.Title>
               <Card.Title className="text-center">Description:</Card.Title>
               <Card.Text className="text-center">{movie.description}</Card.Text>
               <Card.Subtitle className="text-center">
