@@ -8,14 +8,14 @@
 /* Style for the image container */
 .img-container {
   flex: 1; /* Allow the image container to grow and take available space */
-  max-width: 50%; /* Limit the width to 50% of the parent container */
+  max-width: 30%; /* Limit the width to 30% of the parent container */
   padding: 10px; /* Add padding around the image */
 }
 
 /* Style for the movie info container */
 .movie-info {
   flex: 1; /* Allow the movie info container to grow and take available space */
-  max-width: 45%; /* Limit the width to 45% of the parent container */
+  max-width: 65%; /* Limit the width to 65% of the parent container */
   padding: 10px; /* Add padding around the movie info */
 }
 
