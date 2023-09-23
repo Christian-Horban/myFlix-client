@@ -102,7 +102,7 @@ setUser(userResponse.user);
             <Card.Title className='card-title'>{movie.title} </Card.Title>
             {/* <Card.Text>{movie.description}</Card.Text> */}
             <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
-                <Button variant="link" className="btn" >Open</Button>
+                <Button variant="link" className="btn open-button">Open</Button>
             </Link>
             <Button
           variant={isFavorite ? 'danger' : 'success'}
