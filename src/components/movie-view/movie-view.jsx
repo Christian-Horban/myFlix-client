@@ -17,7 +17,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
           <Card.Img
             src={movie.image}
             alt="Movie Cover Image"
-            style={{ maxWidth: "100%" }}
+            style={{ maxWidth: "100%", maxHeight: "300px" }}
           />
         </div>
         <div className="movie-info">
