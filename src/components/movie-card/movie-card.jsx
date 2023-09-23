@@ -101,6 +101,7 @@ setUser(userResponse.user);
           <Card.Body className='card-body' > 
             <Card.Title className='card-title'>{movie.title} </Card.Title>
             {/* <Card.Text>{movie.description}</Card.Text> */}
+            <div className="d-flex justify-content-center mb-3">
             <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
                 <Button variant="primary" className="btn open-button">Open</Button>
             </Link>
@@ -111,6 +112,7 @@ setUser(userResponse.user);
         >
           {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
         </Button> 
+        </div>
           </Card.Body>
         </Card>
       );
