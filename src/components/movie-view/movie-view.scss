@@ -7,10 +7,19 @@
 
 /* Style for the image container */
 .img-container {
-  flex: 1; /* Allow the image container to grow and take available space */
-  max-width: 30%; /* Limit the width to 30% of the parent container */
-  padding: 10px; /* Add padding around the image */
-  max-height: 300px; /* Set the maximum height for the image */
+  flex: 1;
+  max-width: 30%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 300px; /* Set a max height for the image container */
+}
+
+/* Style for the image itself */
+.img-container img {
+  max-width: 100%; /* Ensure the image doesn't exceed its container */
+  max-height: 100%; /* Maintain aspect ratio and fit within the container */
 }
 
 /* Style for the movie info container */
