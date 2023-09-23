@@ -128,78 +128,78 @@ export const ProfileView = ({
 
   return (
     <>
-        <Col md={6}>
-          <Card className="mt-2 mb-3">
-            <Card.Body>
-              <Card.Title>Update your info</Card.Title>
-              <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                  <Form.Label>Username:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={Username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    minLength="5"
-                    className="bg-light"
-                  />
-                </Form.Group>
-                <Form.Group>
-                  <Form.Label>Password:</Form.Label>
-                  <Form.Control
-                    type="password"
-                    value={Password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    // minLength="0"
-                    className="bg-light"
-                  />
-                </Form.Group>
-                <Button className="mt-3" variant="primary" type="submit">
-                  Submit
-                </Button>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
+      <Col md={6}>
+        <Card className="mt-2 mb-3">
+          <Card.Body>
+            <Card.Title>Update your info</Card.Title>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group>
+                <Form.Label>Username:</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={Username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  minLength="5"
+                  className="bg-light"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Password:</Form.Label>
+                <Form.Control
+                  type="password"
+                  value={Password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  // minLength="0"
+                  className="bg-light"
+                />
+              </Form.Group>
+              <Button className="mt-3" variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
+      </Col>
 
-        <Container>
-          <h3>Your favorite movies:</h3>
-          <Row>
-            {favoriteMovies.map((movie, index) => (
-              <Col key={`${movie._id}-${index}`} xs={12}>
-                <Card className="mb-4">
-                  <Card.Body>
-                    <Card.Title>{movie.Title}</Card.Title>
-                    <Card.Text>{movie.Description}</Card.Text>
-                    <Link to={`/movies/${movie._id}`}>
-                      <Button variant="primary">View Movie</Button>
-                    </Link>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
+      <Container>
+        <h3>Your favorite movies:</h3>
+        <Row>
+          {favoriteMovies.map((movie, index) => (
+            <Col key={`${movie._id}-${index}`} xs={12}>
+              <Card className="mb-4">
+                <Card.Body>
+                  <Card.Title>{movie.Title}</Card.Title>
+                  <Card.Text>{movie.Description}</Card.Text>
+                  <Link to={`/movies/${movie._id}`}>
+                    <Button variant="primary">View Movie</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
 
-        <Col md={6}>
-          <Card className="mt-2 mb-3">
-            <Card.Body>
-              <Card.Title>Your info</Card.Title>
-              <p>Username: {user.Username}</p>
-              <p>Email: {user.Email}</p>
-              <p>Birthdate: {user.Birthday.slice(0, 10)}</p>
-            </Card.Body>
-          </Card>
-          <Button
-            variant="danger"
-            onClick={() => {
-              if (confirm("Are you sure?")) {
-                deleteAccount();
-              }
-            }}
-          >
-            Delete user account
-          </Button>
-        </Col>
+      <Col md={6}>
+        <Card className="mt-2 mb-3">
+          <Card.Body>
+            <Card.Title>Your info</Card.Title>
+            <p>Username: {user.Username}</p>
+            <p>Email: {user.Email}</p>
+            <p>Birthdate: {user.Birthday.slice(0, 10)}</p>
+          </Card.Body>
+        </Card>
+        <Button
+          variant="danger"
+          onClick={() => {
+            if (confirm("Are you sure?")) {
+              deleteAccount();
+            }
+          }}
+        >
+          Delete user account
+        </Button>
+      </Col>
     </>
   );
 };
