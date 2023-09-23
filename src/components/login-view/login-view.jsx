@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, FormControl, FormGroup } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import "./login-view.scss"; // Import the SCSS file
 
@@ -34,36 +34,76 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
+    //     <Form onSubmit={handleSubmit} className="login-form">
+    //       <Form.Group controlId="formUsername">
+    //         <Form.Label style={{ fontWeight: "bold", padding: "3px" }}>
+    //           Username:
+    //         </Form.Label>
+    //         <Form.Control
+    //           type="text"
+    //           value={username}
+    //           onChange={(e) => setUsername(e.target.value)}
+    //           required
+    //           minLength="3"
+    //         />
+    //       </Form.Group>
+    //       <br />
+    //       <Form.Group controlId="formPassword">
+    //         <Form.Label style={{ fontWeight: "bold", padding: "3px" }}>
+    //           Password:
+    //         </Form.Label>
+    //         <Form.Control
+    //           type="password"
+    //           value={password}
+    //           onChange={(e) => setPassword(e.target.value)}
+    //           required
+    //         />
+    //       </Form.Group>
+    //       <br />
+    //       <Button variant="primary" type="submit">
+    //         Submit
+    //       </Button>
+
+    //       <div className="mt-3">
+    //         <p style={{ fontWeight: "bold", padding: "3px", textAlign: "center" }}>
+    //           Not a member yet?{" "}
+    //           <Link
+    //             style={{ fontWeight: "bold", padding: "3px", textAlign: "center" }}
+    //             to="/signup"
+    //           >
+    //             Sign up!
+    //           </Link>
+    //         </p>
+    //       </div>
+    //     </Form>
+
     <Form onSubmit={handleSubmit} className="login-form">
-      <Form.Group controlId="formUsername">
-        <Form.Label style={{ fontWeight: "bold", padding: "3px" }}>
-          Username:
-        </Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
+      <FormGroup className="mb=3" controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <FormControl
+          type="email"
+          placeholder="Enter email"
           onChange={(e) => setUsername(e.target.value)}
           required
           minLength="3"
         />
-      </Form.Group>
-      <br />
-      <Form.Group controlId="formPassword">
-        <Form.Label style={{ fontWeight: "bold", padding: "3px" }}>
-          Password:
-        </Form.Label>
+        <Form.Text className="text-muted">
+          We will never share your email with anyone else.
+        </Form.Text>
+      </FormGroup>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
-          value={password}
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </Form.Group>
-      <br />
       <Button variant="primary" type="submit">
         Submit
       </Button>
-
       <div className="mt-3">
         <p style={{ fontWeight: "bold", padding: "3px", textAlign: "center" }}>
           Not a member yet?{" "}
