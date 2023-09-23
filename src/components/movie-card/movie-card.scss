@@ -1,41 +1,30 @@
 .card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 20px;
+  width: 18rem; // Adjust the card width as needed
+  margin-bottom: 20px; // Add margin between cards
+
+  .card-img-container {
+    height: 300px; // Set the desired height for the image container
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: auto; // Maintain aspect ratio
+    }
   }
-  
+
   .card-body {
     text-align: center;
-    padding: 20px;
+
+    .card-title {
+      font-size: 1.25rem; // Increase the title font size
+      margin-top: 10px; // Add space between the image and title
+    }
+
+    .btn {
+      font-size: 1rem; // Adjust button font size
+      margin-top: 10px; // Add space between elements
+    }
   }
-  
-  .card-title {
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-  
-  .card-img-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 300px;
-  }
-  
-  .card-button {
-    font-size: 1.2rem;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .card-button-success {
-    background-color: #28a745;
-    border: none;
-    color: white;
-  }
-  
-  .card-button-danger {
-    background-color: #dc3545;
-    border: none;
-    color: white;
-  }
+}
