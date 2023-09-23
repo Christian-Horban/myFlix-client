@@ -128,7 +128,6 @@ export const ProfileView = ({
 
   return (
     <>
-      <div className="container">
         <Col md={6}>
           <Card className="mt-2 mb-3">
             <Card.Body>
@@ -201,7 +200,6 @@ export const ProfileView = ({
             Delete user account
           </Button>
         </Col>
-      </div>
     </>
   );
 };
