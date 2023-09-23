@@ -1,0 +1,52 @@
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px; /* Add margin for spacing */
+}
+
+/* Style for the image container */
+.img-container {
+  flex: 1; /* Allow the image container to grow and take available space */
+  max-width: 50%; /* Limit the width to 50% of the parent container */
+  padding: 10px; /* Add padding around the image */
+}
+
+/* Style for the movie info container */
+.movie-info {
+  flex: 1; /* Allow the movie info container to grow and take available space */
+  max-width: 45%; /* Limit the width to 45% of the parent container */
+  padding: 10px; /* Add padding around the movie info */
+}
+
+/* Movie details styles */
+.text-center {
+  text-align: center;
+}
+
+/* Movie title style */
+.movie-info .card-title {
+  font-size: 1.25rem;
+  margin-top: 10px;
+  height: 3rem; /* Adjust the title height as needed */
+  overflow: hidden;
+  white-space: normal;
+  text-align: center;
+}
+
+/* Movie description style */
+.movie-info .card-title + .text-center {
+  margin-top: 20px; /* Add space between title and description */
+}
+
+/* Genre and director styles */
+.movie-info .card-subtitle {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Back button style */
+.movie-info .text-center > a {
+  display: inline-block;
+  margin-top: 20px;
+}
