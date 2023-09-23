@@ -17,6 +17,18 @@
     }
   }
 
+  .open-button {
+    background-color: #28a745; /* Set the background color */
+    color: #fff; /* Set the text color */
+    border: none; /* Remove the border */
+    font-size: 1rem; /* Adjust the font size */
+    margin-top: 10px; /* Add space between elements */
+  }
+  
+  .open-button:hover {
+    background-color: #218838; /* Change background color on hover */
+  }
+
   .card-body {
     text-align: center;
     height: 40%; // Set the height for the card body
