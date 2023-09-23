@@ -105,7 +105,7 @@ export const LoginView = ({ onLoggedIn }) => {
                       minLength="3"
                     />
                     <Form.Text className="text-muted">
-                      We will never share your email with anyone else.
+                      Login with your Username
                     </Form.Text>
                   </FormGroup>
 
