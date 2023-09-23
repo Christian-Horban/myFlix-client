@@ -105,6 +105,7 @@ setUser(userResponse.user);
             <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
                 <Button variant="primary" className="btn open-button">Open</Button>
             </Link>
+            <div className="mx-2"></div>
             <Button
           variant={isFavorite ? 'danger' : 'success'}
           size="sm"
