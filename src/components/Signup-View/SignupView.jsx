@@ -12,6 +12,8 @@ import {
   CardGroup,
 } from "react-bootstrap";
 
+import "./signup-view.scss"; // Import the SCSS file
+
 export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
