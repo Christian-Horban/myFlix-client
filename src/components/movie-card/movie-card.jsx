@@ -91,8 +91,13 @@ setUser(userResponse.user);
     return (
         <Card>
           <div style={cardImageContainerStyle}>
-        <Card.Img variant="top" src={movie.image} style={imageStyle} />
-      </div>
+          <Card.Img
+                variant="top"
+                src={movie.image}
+                alt="Movie Cover Image"
+                className="mx-auto d-block"
+                style={{ maxWidth: "100%" }}
+              />       </div>
           <Card.Body style={cardBodyStyle} > 
             <Card.Title>{movie.title}</Card.Title>
             {/* <Card.Text>{movie.description}</Card.Text> */}
