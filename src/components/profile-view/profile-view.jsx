@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, Col, Form, Button, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import './profile-view.scss'; // Import the SCSS file
 
 export const ProfileView = ({
   user,
