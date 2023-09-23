@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
-import './styles.scss'; // Import the SCSS file
+import './login-view.scss'; // Import the SCSS file
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
