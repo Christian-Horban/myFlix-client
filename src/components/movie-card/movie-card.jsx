@@ -96,16 +96,7 @@ export const MovieCard = ({ movie, user, setUser, token }) => {
         style={{ maxWidth: "100%" }}
       />
       <Card.Body className="card-body">
-        <Card.Title
-          style={{
-            fontSize: "1.25rem",
-            marginTop: "10px",
-            height: "3.5rem", // Set a fixed height for the title container
-            overflow: "hidden", // Hide any overflowing text
-            whiteSpace: "normal", // Allow text to wrap to the next line
-            textAlign: "center", // Center-align the title text
-          }}
-        >
+        <Card.Title className="card-title">
           {movie.title}
         </Card.Title>
         {/* <Card.Text>{movie.description}</Card.Text> */}
