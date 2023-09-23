@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { MovieCard } from "../movie-card/movie-card";
 import { useEffect, useState } from "react";
-// import "./movie-view.scss";
+import "./movie-view.scss";
 
 export const MovieView = ({ movies, user, token, updateUser }) => {
   console.log("MOVIES", movies);
