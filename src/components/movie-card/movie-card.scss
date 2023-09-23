@@ -1,55 +1,53 @@
 .card {
-  height: 300px; // Set a fixed height for the card
+  height: 400px; // Set a fixed height for the card
   width: 100%; // Take up the available width
   margin-bottom: 20px; // Add margin between cards
+}
 
-  .card-img-container {
-    height: 60%; // Set the desired height for the image container
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; // Hide any overflowing image content
+.card-img-container {
+  height: 60%; // Set the desired height for the image container
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; // Hide any overflowing image content
 
-    .img {
-      width: 100%;
-      height: auto; // Allow the image to adjust its height
-      object-fit: cover; // Maintain aspect ratio and cover the container
-    }
+  .img {
+    width: 100%;
+    height: auto; // Allow the image to adjust its height
+    object-fit: cover; // Maintain aspect ratio and cover the container
   }
+}
 
-  .card-body {
-    display: flex;
-    flex-direction: column; // Stack card content vertically
-    justify-content: space-between; // Add space between title and buttons
-    align-items: center; // Center content horizontally
-    height: 100%; // Ensure the card body takes up all available height
-  }
+.card-body {
+  display: flex;
+  flex-direction: column; // Stack card content vertically
+  justify-content: space-between; // Add space between title and buttons
+  align-items: center; // Center content horizontally
+  height: 100%; // Ensure the card body takes up all available height
+}
 
-    .card-title {
-      font-size: 1.25rem;
-      margin-top: 10px;
-      height: 2.5rem; /* Set a fixed height for the title container */
-      overflow: hidden; /* Hide any overflowing text */
-      white-space: normal; /* Allow text to wrap to the next line */
-      text-align: center; /* Center-align the title text */
-    }
+.card-title {
+  font-size: 1.25rem;
+  margin-top: 10px;
+  height: 2.5rem; /* Set a fixed height for the title container */
+  overflow: hidden; /* Hide any overflowing text */
+  white-space: normal; /* Allow text to wrap to the next line */
+  text-align: center; /* Center-align the title text */
+}
 
-    .btn {
-      font-size: 1rem; // Adjust button font size
-      margin-top: 10px; // Add space between elements
-    }
+.btn {
+  font-size: 1rem; // Adjust button font size
+  margin-top: 10px; // Add space between elements
+}
 
-    .open-button {
-      background-color: #28a745; /* Set the background color */
-      color: #fff; /* Set the text color */
-      border: none; /* Remove the border */
-      font-size: 1rem; /* Adjust the font size */
-      margin-top: 10px; /* Add space between elements */
-    }
-    
-    .open-button:hover {
-      background-color: #218838; /* Change background color on hover */
-    }
-  }
+.open-button {
+  background-color: #28a745; /* Set the background color */
+  color: #fff; /* Set the text color */
+  border: none; /* Remove the border */
+  font-size: 1rem; /* Adjust the font size */
+  margin-top: 10px; /* Add space between elements */
+}
 
-
+.open-button:hover {
+  background-color: #218838; /* Change background color on hover */
+}
