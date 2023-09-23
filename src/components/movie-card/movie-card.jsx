@@ -96,7 +96,7 @@ setUser(userResponse.user);
                 src={movie.image}
                 alt="Movie Cover Image"
                 className="card-img-container"
-                style={{ maxWidth: "100%" }}
+                // style={{ maxWidth: "100%" }}
               />       
           <Card.Body className='card-body' > 
             <Card.Title className='card-title'>{movie.title} </Card.Title>
