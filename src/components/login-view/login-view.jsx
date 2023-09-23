@@ -78,11 +78,12 @@ export const LoginView = ({ onLoggedIn }) => {
     //     </Form>
 
     <Form onSubmit={handleSubmit} className="login-form">
-      <FormGroup className="mb=3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
+      <FormGroup className="mb=3" controlId="formUsername">
+        <Form.Label>Username</Form.Label>
         <FormControl
-          type="email"
-          placeholder="Enter email"
+          type="test"
+          placeholder="Username"
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
           minLength="3"
