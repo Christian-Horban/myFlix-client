@@ -1,0 +1,35 @@
+/* Adjust padding and margins for spacing */
+.container {
+  padding: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+/* Customize typography */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* Define a color scheme */
+.primary-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.secondary-button {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+/* Add hover effects to buttons */
+.primary-button:hover,
+.secondary-button:hover {
+  opacity: 0.8;
+}
