@@ -1,5 +1,15 @@
 import { useState } from "react";
-import { Button, Form, FormControl, FormGroup } from "react-bootstrap";
+import {
+  Button,
+  Form,
+  FormControl,
+  FormGroup,
+  Col,
+  Row,
+  Container,
+  Card,
+  CardGroup,
+} from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import "./login-view.scss"; // Import the SCSS file
 
@@ -76,46 +86,66 @@ export const LoginView = ({ onLoggedIn }) => {
     //         </p>
     //       </div>
     //     </Form>
+    <Container>
+      <Row>
+        <Col>
+        <CardGroup>
+          <Card>
+            <Card.Title>Login</Card.Title>
+          <Form onSubmit={handleSubmit} className="login-form">
+            <FormGroup className="mb=3" controlId="formUsername">
+              <Form.Label>Username</Form.Label>
+              <FormControl
+                type="test"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                minLength="3"
+              />
+              <Form.Text className="text-muted">
+                We will never share your email with anyone else.
+              </Form.Text>
+            </FormGroup>
 
-    <Form onSubmit={handleSubmit} className="login-form">
-      <FormGroup className="mb=3" controlId="formUsername">
-        <Form.Label>Username</Form.Label>
-        <FormControl
-          type="test"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="3"
-        />
-        <Form.Text className="text-muted">
-          We will never share your email with anyone else.
-        </Form.Text>
-      </FormGroup>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-      <div className="mt-3">
-        <p style={{ fontWeight: "bold", padding: "3px", textAlign: "center" }}>
-          Not a member yet?{" "}
-          <Link
-            style={{ fontWeight: "bold", padding: "3px", textAlign: "center" }}
-            to="/signup"
-          >
-            Sign up!
-          </Link>
-        </p>
-      </div>
-    </Form>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+            <div className="mt-3">
+              <p
+                style={{
+                  fontWeight: "bold",
+                  padding: "3px",
+                  textAlign: "center",
+                }}
+              >
+                Not a member yet?{" "}
+                <Link
+                  style={{
+                    fontWeight: "bold",
+                    padding: "3px",
+                    textAlign: "center",
+                  }}
+                  to="/signup"
+                >
+                  Sign up!
+                </Link>
+              </p>
+            </div>
+          </Form>
+          </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 };
