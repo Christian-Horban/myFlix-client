@@ -89,20 +89,20 @@ setUser(userResponse.user);
 
     
     return (
-        <Card>
-          <div style={cardImageContainerStyle}>
+        <Card className="card">
+        
           <Card.Img
                 variant="top"
                 src={movie.image}
                 alt="Movie Cover Image"
-                className="mx-auto d-block"
+                className="card-img-container"
                 style={{ maxWidth: "100%" }}
-              />       </div>
-          <Card.Body style={cardBodyStyle} > 
-            <Card.Title>{movie.title}</Card.Title>
+              />       
+          <Card.Body className='card-body' > 
+            <Card.Title className='card-title'>{movie.title} </Card.Title>
             {/* <Card.Text>{movie.description}</Card.Text> */}
             <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
-                <Button variant="link" style={buttonStyle} >Open</Button>
+                <Button variant="link" className="btn" >Open</Button>
             </Link>
             <Button
           variant={isFavorite ? 'danger' : 'success'}
