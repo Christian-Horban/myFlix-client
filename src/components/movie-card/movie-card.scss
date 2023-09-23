@@ -1,6 +1,6 @@
 .card {
-  width: 18rem; // Adjust the card width as needed
-  height: 450px; // Set a fixed height for the card
+  height: 400px; // Set a fixed height for the card
+  width: 100%; // Take up the available width
   margin-bottom: 20px; // Add margin between cards
 
   .card-img-container {
@@ -10,28 +10,19 @@
     justify-content: center;
     overflow: hidden; // Hide any overflowing image content
 
-    img {
+    .img {
       width: 100%;
       height: auto; // Allow the image to adjust its height
       object-fit: cover; // Maintain aspect ratio and cover the container
     }
   }
 
-  .open-button {
-    background-color: #28a745; /* Set the background color */
-    color: #fff; /* Set the text color */
-    border: none; /* Remove the border */
-    font-size: 1rem; /* Adjust the font size */
-    margin-top: 10px; /* Add space between elements */
-  }
-  
-  .open-button:hover {
-    background-color: #218838; /* Change background color on hover */
-  }
-
   .card-body {
-    text-align: center;
-    height: 40%; // Set the height for the card body
+    display: flex;
+    flex-direction: column; // Stack card content vertically
+    justify-content: space-between; // Add space between title and buttons
+    align-items: center; // Center content horizontally
+    height: 100%; // Ensure the card body takes up all available height
 
     .card-title {
       font-size: 1.25rem; // Increase the title font size
@@ -41,6 +32,18 @@
     .btn {
       font-size: 1rem; // Adjust button font size
       margin-top: 10px; // Add space between elements
+    }
+
+    .open-button {
+      background-color: #28a745; /* Set the background color */
+      color: #fff; /* Set the text color */
+      border: none; /* Remove the border */
+      font-size: 1rem; /* Adjust the font size */
+      margin-top: 10px; /* Add space between elements */
+    }
+    
+    .open-button:hover {
+      background-color: #218838; /* Change background color on hover */
     }
   }
 }
