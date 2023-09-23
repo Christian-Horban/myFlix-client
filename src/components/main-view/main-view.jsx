@@ -10,7 +10,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Container, Form, InputGroup, Nav } from "react-bootstrap";
-import "./styles.scss"; // Import the SCSS file
+import "./main-view.scss"; // Import the SCSS file
 
 export const MainView = () => {
     const storedUser = localStorage.getItem("user");
