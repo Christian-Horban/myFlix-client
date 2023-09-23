@@ -10,6 +10,7 @@
   flex: 1; /* Allow the image container to grow and take available space */
   max-width: 30%; /* Limit the width to 30% of the parent container */
   padding: 10px; /* Add padding around the image */
+  max-height: 300px; /* Set the maximum height for the image */
 }
 
 /* Style for the movie info container */
