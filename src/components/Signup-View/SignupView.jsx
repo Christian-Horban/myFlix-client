@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "./signup-view.scss"; // Import the SCSS file
 
 export const SignupView = () => {
    
@@ -39,7 +38,6 @@ const handleSubmit = (event) => {
     };
 
     return(
-        <div className="signup-view">
         <Form onSubmit= {handleSubmit}>
             <Form.Group controlId="formUsername">
                 <Form.Label>Username:</Form.Label>
@@ -81,6 +79,5 @@ const handleSubmit = (event) => {
             </Form.Group>
             <Button type= "submit">Submit</Button>
         </Form>
-        </div>
     );
 };

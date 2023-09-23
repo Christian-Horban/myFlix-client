@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, Col, Form, Button, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./profile-view.scss"; // Import the SCSS file
 
 export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) => {
   const [Username, setUsername] = useState(user.Username); // Initialize with user's username
@@ -120,7 +119,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
 
   return (
     <>
-      <Col md={6} className="profile-view">
+      <Col md={6}>
         <Card className="mt-2 mb-3">
           <Card.Body>
             <Card.Title>Update your info</Card.Title>
@@ -155,7 +154,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
             
             <Container>
   <h3>Your favorite movies:</h3>
-  <Row className="favorite-movies-container">
+  <Row>
     {favoriteMovies.map((movie, index) => (
       <Col key={`${movie._id}-${index}`} xs={12}>
         <Card className="mb-4">
@@ -172,7 +171,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
   </Row>
 </Container>
 
-            <Col md={6} className="profile-view">           
+            <Col md={6}>           
                 <Card className="mt-2 mb-3">
                     <Card.Body>
                         <Card.Title >Your info</Card.Title>

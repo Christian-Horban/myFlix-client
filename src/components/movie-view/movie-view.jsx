@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { MovieCard } from "../movie-card/movie-card";
 import { useEffect, useState } from "react";
-import "./movie-view.scss"; // Import the SCSS file
 
 export const MovieView = ({ movies, user, token, updateUser }) => {
     console.log("MOVIES", movies);
@@ -62,7 +61,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
 
     return (
         <>
-            <Col md={12} className="movie-view">
+            <Col md={12}>
                 <div /*className="text-light"*/>
                     
                     <h2 style={{ textAlign: 'center' }}>{movie.title}</h2>
