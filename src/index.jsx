@@ -1,21 +1,18 @@
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 
-import { MainView } from './components/main-view/main-view';
-import Container from 'react-bootstrap/Container';
+import { MainView } from "./components/main-view/main-view";
+import Container from "react-bootstrap/Container";
 
-import './index.scss';
-
-
+import "./index.scss";
 
 // Main component
 const App = () => {
-    return (
+  return (
     <Container>
-        <MainView />
+      <MainView />
     </Container>
-    );
+  );
 };
-
 
 // Finds the root of your app
 const container = document.querySelector("#root");

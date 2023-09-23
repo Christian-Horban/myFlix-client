@@ -2,11 +2,19 @@ import { useState, useEffect } from "react";
 import { Card, Col, Form, Button, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) => {
+export const ProfileView = ({
+  user,
+  token,
+  movies,
+  onLoggedOut,
+  updateUser,
+}) => {
   const [Username, setUsername] = useState(user.Username); // Initialize with user's username
   const [Password, setPassword] = useState(""); // Keep password field empty for security
   const [email, setEmail] = useState(user.Email); // Initialize with user's email
-  const [birthdate, setBirthdate] = useState(user.Birthday ? user.Birthday.slice(0, 10) : ""); // Initialize with user's birthdate or empty string
+  const [birthdate, setBirthdate] = useState(
+    user.Birthday ? user.Birthday.slice(0, 10) : ""
+  ); // Initialize with user's birthdate or empty string
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
@@ -88,7 +96,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
         if (updatedUser) {
           console.log("User data updated successfully:", updatedUser);
           alert("Successfully changed userdata");
-        //   updateUser(updatedUser); // Invoke updateUser function with updated user data
+          //   updateUser(updatedUser); // Invoke updateUser function with updated user data
         }
       })
       .catch((e) => {
@@ -147,45 +155,50 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
               <Button className="mt-3" variant="primary" type="submit">
                 Submit
               </Button>
-                        </Form>
-                    </Card.Body>
-                </Card>
-            </Col>
-            
-            <Container>
-  <h3>Your favorite movies:</h3>
-  <Row>
-    {favoriteMovies.map((movie, index) => (
-      <Col key={`${movie._id}-${index}`} xs={12}>
-        <Card className="mb-4">
-          <Card.Body>
-            <Card.Title>{movie.Title}</Card.Title>
-            <Card.Text>{movie.Description}</Card.Text>
-            <Link to={`/movies/${movie._id}`}>
-              <Button variant="primary">View Movie</Button>
-            </Link>
+            </Form>
           </Card.Body>
         </Card>
       </Col>
-    ))}
-  </Row>
-</Container>
 
-            <Col md={6}>           
-                <Card className="mt-2 mb-3">
-                    <Card.Body>
-                        <Card.Title >Your info</Card.Title>
-                        <p>Username: {user.Username}</p>
-                        <p>Email: {user.Email}</p>
-                        <p>Birthdate: {user.Birthday.slice(0, 10)}</p>
-                    </Card.Body>
-                </Card>
-                <Button variant="danger" onClick={() => {
-                    if (confirm("Are you sure?")) {
-                        deleteAccount();
-                    }
-                }}>Delete user account</Button>
+      <Container>
+        <h3>Your favorite movies:</h3>
+        <Row>
+          {favoriteMovies.map((movie, index) => (
+            <Col key={`${movie._id}-${index}`} xs={12}>
+              <Card className="mb-4">
+                <Card.Body>
+                  <Card.Title>{movie.Title}</Card.Title>
+                  <Card.Text>{movie.Description}</Card.Text>
+                  <Link to={`/movies/${movie._id}`}>
+                    <Button variant="primary">View Movie</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
             </Col>
-        </>      
-    );
-}
+          ))}
+        </Row>
+      </Container>
+
+      <Col md={6}>
+        <Card className="mt-2 mb-3">
+          <Card.Body>
+            <Card.Title>Your info</Card.Title>
+            <p>Username: {user.Username}</p>
+            <p>Email: {user.Email}</p>
+            <p>Birthdate: {user.Birthday.slice(0, 10)}</p>
+          </Card.Body>
+        </Card>
+        <Button
+          variant="danger"
+          onClick={() => {
+            if (confirm("Are you sure?")) {
+              deleteAccount();
+            }
+          }}
+        >
+          Delete user account
+        </Button>
+      </Col>
+    </>
+  );
+};

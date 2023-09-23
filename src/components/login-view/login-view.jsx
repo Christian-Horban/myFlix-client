@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
-import './login-view.scss'; // Import the SCSS file
+import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { useNavigate, Link } from "react-router-dom";
+import "./login-view.scss"; // Import the SCSS file
 
 export const LoginView = ({ onLoggedIn }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -16,30 +16,27 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password,
     };
 
-    fetch('https://horban-movie-api.herokuapp.com/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("https://horban-movie-api.herokuapp.com/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((data) => {
-        localStorage.setItem('user', JSON.stringify(data.user));
-        localStorage.setItem('token', data.token);
-        onLoggedIn(data.user,data.token);
-        navigate('/');
+        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", data.token);
+        onLoggedIn(data.user, data.token);
+        navigate("/");
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
   };
 
   return (
-    <Form
-      onSubmit={handleSubmit}
-      className="login-form"
-          >
+    <Form onSubmit={handleSubmit} className="login-form">
       <Form.Group controlId="formUsername">
-        <Form.Label style={{ fontWeight: 'bold', padding: '3px' }}>
+        <Form.Label style={{ fontWeight: "bold", padding: "3px" }}>
           Username:
         </Form.Label>
         <Form.Control
@@ -52,7 +49,7 @@ export const LoginView = ({ onLoggedIn }) => {
       </Form.Group>
       <br />
       <Form.Group controlId="formPassword">
-        <Form.Label style={{ fontWeight: 'bold', padding: '3px' }}>
+        <Form.Label style={{ fontWeight: "bold", padding: "3px" }}>
           Password:
         </Form.Label>
         <Form.Control
@@ -68,10 +65,10 @@ export const LoginView = ({ onLoggedIn }) => {
       </Button>
 
       <div className="mt-3">
-        <p style={{ fontWeight: 'bold', padding: '3px', textAlign: 'center' }}>
-          Not a member yet?{' '}
+        <p style={{ fontWeight: "bold", padding: "3px", textAlign: "center" }}>
+          Not a member yet?{" "}
           <Link
-            style={{ fontWeight: 'bold', padding: '3px', textAlign: 'center' }}
+            style={{ fontWeight: "bold", padding: "3px", textAlign: "center" }}
             to="/signup"
           >
             Sign up!
