@@ -98,7 +98,7 @@ export const MovieCard = ({ movie, user, setUser, token }) => {
           style={{
             fontSize: "1.25rem",
             marginTop: "10px",
-            height: "2.5rem", // Set a fixed height for the title container
+            height: "3rem", // Set a fixed height for the title container
             overflow: "hidden", // Hide any overflowing text
             whiteSpace: "normal", // Allow text to wrap to the next line
             textAlign: "center", // Center-align the title text
