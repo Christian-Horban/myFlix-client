@@ -59,7 +59,7 @@ export const MainView = () => {
 
       
         return (
-          <div className="main-view"> {/* Apply the main-view class */}
+          <div className="main-view"> /* Apply the main-view class */
           <BrowserRouter>
             <NavigationBar
               user={user}
