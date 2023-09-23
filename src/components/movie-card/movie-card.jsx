@@ -3,29 +3,10 @@ import React, {useState, useEffect} from 'react';
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./movie-card.scss"; // Import the SCSS file
 
 export const MovieCard = ({ movie, user, setUser, token }) => {
 
-  const cardBodyStyle = {
-    textAlign: 'center',
-  };
-
-  const cardImageContainerStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '300px', // Set the desired height for the image container
-  };
-
-  const imageStyle = {
-    width: '200px', // Set a fixed width for the images
-    height: 'auto', // Maintain aspect ratio
-    maxWidth: '100%', // Ensure the image doesn't exceed its container
-  };
-
-  const buttonStyle = {
-    fontSize: '1.2rem',
-  };
 
   const [isFavorite, setIsFavorite] = useState(
     user && movie && user.FavoriteMovies.includes(movie._id)
@@ -88,36 +69,34 @@ setUser(userResponse.user);
   };
 
     
-    return (
-        <Card>
-          <div style={cardImageContainerStyle}>
-        <Card.Img variant="top" src={movie.image} style={imageStyle} />
+  return (
+    <Card className="card"> /* Apply the card class */
+      <div className="card-img-container"> /* Apply the card-img-container class */
+        <Card.Img
+          variant="top"
+          src={movie.image}
+          className="card-img" /* Apply the card-img class */
+        />
       </div>
-          <Card.Body style={cardBodyStyle} > 
-            <Card.Title>{movie.title}</Card.Title>
-            {/* <Card.Text>{movie.description}</Card.Text> */}
-            <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
-                <Button variant="link" style={buttonStyle} >Open</Button>
-            </Link>
-            <Button
-          variant={isFavorite ? 'danger' : 'success'}
+      <Card.Body className="card-body"> /* Apply the card-body class */
+        <Card.Title className="card-title">{movie.title}</Card.Title>
+        <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+          <Button
+            variant="link"
+            className="card-button" /* Apply the card-button class */
+          >
+            Open
+          </Button>
+        </Link>
+        <Button
+          variant={isFavorite ? "danger" : "success"}
           size="sm"
           onClick={handleToggleFavorite}
+          className={`card-button card-button-${isFavorite ? "danger" : "success"}`} /* Apply the card-button and card-button-{variant} classes */
         >
-          {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-        </Button> 
-          </Card.Body>
-        </Card>
-      );
-    };
-
-    MovieCard.propTypes = {
-        movie: PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            image: PropTypes.string.isRequired,
-            Director: PropTypes.string
-        }).isRequired,
-        user: PropTypes.object, 
-        setUser: PropTypes.func.isRequired, 
-        token: PropTypes.string.isRequired 
-    };
+          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        </Button>
+      </Card.Body>
+    </Card>
+  );
+};

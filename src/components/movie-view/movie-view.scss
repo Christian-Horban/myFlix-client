@@ -1,8 +1,32 @@
-.back-button {
-    padding: 4px 12px 4px 12px;
-    color: whitesmoke;
-    background-color: dodgerblue;
-    border: none;
-    border-radius: 4px;
-
-}
+.movie-view {
+    text-align: center;
+  
+    h2 {
+      text-align: center;
+    }
+  
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 100%; // Set the width to 100% for uniform size
+      height: auto; // Maintain aspect ratio
+      padding: 3px; // Add 3px padding on all sides
+    }
+  
+    h3 {
+      text-align: center;
+    }
+  
+    p {
+      text-align: center;
+    }
+  
+    h4 {
+      text-align: center;
+    }
+  
+    .back-button {
+      margin-top: 6px;
+      margin-left: 6px;
+    }
+  }

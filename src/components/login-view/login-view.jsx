@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
+import './styles.scss'; // Import the SCSS file
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
@@ -35,8 +36,8 @@ export const LoginView = ({ onLoggedIn }) => {
   return (
     <Form
       onSubmit={handleSubmit}
-      style={{ paddingTop: '45px', display: 'flex', flexDirection: 'column' }}
-    >
+      className="login-form"
+          >
       <Form.Group controlId="formUsername">
         <Form.Label style={{ fontWeight: 'bold', padding: '3px' }}>
           Username:
