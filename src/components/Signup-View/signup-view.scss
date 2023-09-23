@@ -41,4 +41,17 @@
   }
   
   .btn-primary:hover {
-    background-color:
+    background-color: #0056b3;
+  }
+  
+  /* Center the form */
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Optional: Add media queries for responsiveness */
+  @media (max-width: 768px) {
+    .card {
+      width: 100%;
+    }
+  }
